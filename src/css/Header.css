@@ -1,0 +1,13 @@
+.facebook {
+  background: #3864a3;
+  border: 0;
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+  color: #fff;
+  padding: 2rem;
+}
+
+.facebook::after{
+  background: #2d5082;
+}

@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
+import Header from "./components/Header"
 import Cat from "./components/Cat"
 import AddCatForm from "./components/AddCatForm"
+import base from "./base"
 import './App.css';
 
 class App extends Component {
   constructor(){
     super();
     this.addCat = this.addCat.bind(this);
+    this.authenticate = this.authenticate.bind(this);
+    this.authHandler = this.authHandler.bind(this);
+    this.logout = this.logout.bind(this);
+
     this.state = {
+      //this is for detection of logged in user
+      uid: null,
+      ///
+      users: {
+        user1: {
+          uid: 1,
+          name: "Kelvin",
+          fosterCats: [],
+          likeCats: []
+        }
+      },
       cats: {
         cat1: {
           name: "Kinder",
@@ -47,10 +64,52 @@ class App extends Component {
   componentWillMount(){
     //sync up state of cats with firebase here
   }
+
+  componentDidMount(){
+    base.onAuth()((user) => {
+      if(user){
+        this.authHandler(null, {user});
+      }
+    })
+  }
+  authenticate(provider){
+    base.authWithOAuthPopup(provider, this.authHandler);
+  }
+  logout(){
+    base.unauth();
+    this.setState({uid: null});
+  }
+  authHandler(err, authData){
+    console.log(authData)
+    if (err){
+      console.error(err);
+      return;
+    }
+    //grab app info from firebase using root ref
+    const appRef = base.database().ref();
+
+    //query firebase once for app database
+    appRef.once("value", (snapshot) => {
+      let user = `${authData.user.uid}`
+        appRef.set({
+          users: {
+            [user] : {
+              uid: authData.user.uid,
+              name: authData.user.displayName,
+              imageUrl: authData.user.photoURL
+            }
+          }
+        })
+      this.setState({
+        uid: authData.user.uid
+      })
+    })
+  }
+
   addCat(cat){
     //make a copy of current state.cats
     const cats = {...this.state.cats};
-    //add cat with unique key
+    //add cat with unique key - may need to change since multiple users may add at the same time
     const timestamp = Date.now();
     cats[`cat-${timestamp}`] = cat
     //set state
@@ -60,10 +119,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src="http://thecraftchop.com/files/images/grumpy.svg" className="App-logo" alt="logo" />
-          <h2>Welcome to NekoNet</h2>
-        </div>
+        <Header
+          uid={this.state.uid} authenticate={this.authenticate}
+          logout={this.logout}
+        />
         <ul className="list-of-cats">
           {
             Object.keys(this.state.cats)
