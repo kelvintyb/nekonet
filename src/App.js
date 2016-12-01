@@ -1,43 +1,62 @@
 import React, { Component } from 'react';
 import Cat from "./components/Cat"
+import AddCatForm from "./components/AddCatForm"
 import './App.css';
 
 class App extends Component {
   constructor(){
     super();
+    this.addCat = this.addCat.bind(this);
     this.state = {
       cats: {
         cat1: {
           name: "Kinder",
-          color: "Tabby",
+          color: "tabby",
           age: "1",
-          status: "Up for Adoption",
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg"
+          isForAdoption: true,
+          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
+          user_id: 1
         },
         cat2: {
-          name: "Kinder",
-          color: "Tabby",
-          age: "1",
-          status: "Up for Adoption",
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg"
+          name: "NotByUser",
+          color: "white",
+          age: "3",
+          isForAdoption: true,
+          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
+          user_id: 2
         },
         cat3: {
-          name: "Kinder",
-          color: "Tabby",
-          age: "1",
-          status: "Not up for Adoption",
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg"
+          name: "Faust",
+          color: "others",
+          age: "6",
+          isForAdoption: false,
+          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
+          user_id: 1
         },
         cat4: {
-          name: "Kinder",
-          color: "Tabby",
-          age: "1",
-          status: "Up for Adoption",
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg"
+          name: "Clov",
+          color: "Calico",
+          age: "13",
+          isForAdoption: false,
+          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
+          user_id: 1
         }
       }
     }
   }
+  componentWillMount(){
+    //sync up state of cats with firebase here
+  }
+  addCat(cat){
+    //make a copy of current state.cats
+    const cats = {...this.state.cats};
+    //add cat with unique key
+    const timestamp = Date.now();
+    cats[`cat-${timestamp}`] = cat
+    //set state
+    this.setState({cats})
+  }
+
   render() {
     return (
       <div className="App">
@@ -51,7 +70,7 @@ class App extends Component {
                   .map(key => <Cat key={key} index={key} details={this.state.cats[key]} />)
           }
         </ul>
-
+        <AddCatForm addCat={this.addCat} />
       </div>
     );
   }
