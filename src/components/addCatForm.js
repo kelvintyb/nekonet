@@ -32,7 +32,7 @@ class AddCatForm extends React.Component {
     )
   }
 }
-
+//property type validation
 AddCatForm.propTypes = {
   addCat: React.PropTypes.func.isRequired
 }
