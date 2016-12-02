@@ -16,15 +16,7 @@ class App extends Component {
     this.state = {
       //this is for detection of logged in user
       uid: null,
-      ///
-      users: {
-        user1: {
-          uid: 1,
-          name: "Kelvin",
-          fosterCats: [],
-          likeCats: []
-        }
-      },
+      //cats 
       cats: {
         cat1: {
           name: "Kinder",
