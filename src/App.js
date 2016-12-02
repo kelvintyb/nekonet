@@ -84,9 +84,13 @@ class App extends Component {
     //make a copy of current state.cats
     const cats = {...this.state.cats};
     //add cat with unique key - may need to change since multiple users may add at the same time
-    const timestamp = Date.now();
-    cats[`cat-${timestamp}`] = cat
+    const newCatKey = base.database().ref().child("cats").push().key;
+    //update currUser's fosterList in firebase
+    let updates = {};
+    updates[`/users/${this.state.uid}/fosterList/${newCatKey}`] = true
+    base.database().ref().update(updates);
     //set state
+    cats[newCatKey] = cat
     this.setState({cats})
   }
 
