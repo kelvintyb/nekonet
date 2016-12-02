@@ -16,45 +16,22 @@ class App extends Component {
     this.state = {
       //this is for detection of logged in user
       uid: null,
-      //cats 
-      cats: {
-        cat1: {
-          name: "Kinder",
-          color: "tabby",
-          age: "1",
-          isForAdoption: true,
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
-          user_id: 1
-        },
-        cat2: {
-          name: "NotByUser",
-          color: "white",
-          age: "3",
-          isForAdoption: true,
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
-          user_id: 2
-        },
-        cat3: {
-          name: "Faust",
-          color: "others",
-          age: "6",
-          isForAdoption: false,
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
-          user_id: 1
-        },
-        cat4: {
-          name: "Clov",
-          color: "Calico",
-          age: "13",
-          isForAdoption: false,
-          imageUrl: "http://www.catwelfare.org/sites/default/files/imagecache/adpt_thumbnail_large/adoptions/kinder5.jpg",
-          user_id: 1
-        }
-      }
+      //cats - note that age is going to be in terms of months
+      cats: {}
     }
   }
   componentWillMount(){
     //sync up state of cats with firebase here
+    this.ref = base.syncState("/cats", {
+      context: this,
+      state: "cats"
+    });
+    //check for loggedIn User
+    const localUserRef = localStorage.getItem("localUser");
+    if (localUserRef){
+      //update App state.uid
+      this.setState({uid: localUserRef});
+    }
   }
 
   componentDidMount(){
@@ -64,26 +41,30 @@ class App extends Component {
       }
     })
   }
+
+  componentWillUnmount(){
+    base.removeBinding(this.ref)
+  }
   authenticate(provider){
     base.authWithOAuthPopup(provider, this.authHandler);
   }
   logout(){
     base.unauth();
+    localStorage.removeItem("localUser")
     this.setState({uid: null});
   }
   authHandler(err, authData){
-    console.log(authData)
     if (err){
       console.error(err);
       return;
     }
     //grab app info from firebase using root ref
-    const appRef = base.database().ref();
+    const database = base.database().ref();
 
     //query firebase once for app database
-    appRef.once("value", (snapshot) => {
+    database.once("value", (snapshot) => {
       let user = `${authData.user.uid}`
-        appRef.set({
+        database.set({
           users: {
             [user] : {
               uid: authData.user.uid,
@@ -92,6 +73,8 @@ class App extends Component {
             }
           }
         })
+      //set user id in both localStorage & state to detect if user isLoggedIn, even if browser is refreshed
+      localStorage.setItem(`localUser`, `${authData.user.uid}`)
       this.setState({
         uid: authData.user.uid
       })
