@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from "./components/Header"
 import Cat from "./components/Cat"
 import AddCatForm from "./components/AddCatForm"
+import UserProfile from "./components/UserProfile"
 import base from "./base"
 import './App.css';
 
@@ -104,7 +105,8 @@ class App extends Component {
                   .map(key => <Cat key={key} index={key} details={this.state.cats[key]} />)
           }
         </ul>
-        <AddCatForm addCat={this.addCat} />
+        <AddCatForm addCat={this.addCat} uid={this.state.uid} />
+        <UserProfile />
       </div>
     );
   }
