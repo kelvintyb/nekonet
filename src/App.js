@@ -61,21 +61,19 @@ class App extends Component {
     }
     //grab app info from firebase using root ref
     const database = base.database().ref();
-
     //query firebase once for app database
     database.once("value", (snapshot) => {
-      let user = `${authData.user.uid}`
-        database.set({
-          users: {
-            [user] : {
-              uid: authData.user.uid,
-              name: authData.user.displayName,
-              imageUrl: authData.user.photoURL
-            }
-          }
-        })
+      let user = `${authData.user.uid}`;
+      var updates = {};
+      updates[`/users/${user}`] = {
+        uid: authData.user.uid,
+        name: authData.user.displayName,
+        imageUrl: authData.user.photoURL
+      };
+      //update database with user info - using .set will OVERWRITE the entire db, so don't use .set
+      database.update(updates);
       //set user id in both localStorage & state to detect if user isLoggedIn, even if browser is refreshed
-      localStorage.setItem(`localUser`, `${authData.user.uid}`)
+      localStorage.setItem(`localUser`, `${authData.user.uid}`);
       this.setState({
         uid: authData.user.uid
       })
