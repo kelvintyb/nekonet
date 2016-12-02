@@ -9,7 +9,7 @@ class AddCatForm extends React.Component {
       color: this.color.value,
       isForAdoption: true,
       imageUrl: this.image.value,
-      user_id: this.props.uid
+      uid: this.props.uid
     }
     this.props.addCat(cat)
     this.catForm.reset();

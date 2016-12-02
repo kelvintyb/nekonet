@@ -1,7 +1,27 @@
 import React from 'react';
+import base from "../base"
 
 class Cat extends React.Component {
+  //may need to refactor out delete function/button into parent component if Cat component is purely functional
+  updateCat(e){
 
+  }
+  removeCat(e){
+    e.preventDefault();
+    const catKey = this.props.index
+    //grab app info from firebase using root ref
+    const database = base.database().ref();
+    //query firebase once for cats snapshot
+    database.child("/cats").child(catKey).once("value", (snapshot) => {
+      const cat = snapshot.val();
+      const catFoster = cat.uid
+      const removeData = {
+        [`cats/${catKey}`] : null,
+        [`users/${catFoster}/fosterList/${catKey}`] : null
+      };
+      database.update(removeData);  
+    })
+  }
   render() {
     const {details} = this.props;
     return(
@@ -12,6 +32,7 @@ class Cat extends React.Component {
           <span className="status">{details.status}</span>
         </h3>
         <p>{details.age} years old</p>
+        <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
       </li>
       )
   }
