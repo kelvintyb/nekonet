@@ -10,6 +10,7 @@ class App extends Component {
   constructor(){
     super();
     this.addCat = this.addCat.bind(this);
+    this.updateCat = this.updateCat.bind(this);
     this.authenticate = this.authenticate.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.logout = this.logout.bind(this);
@@ -89,9 +90,14 @@ class App extends Component {
     let updates = {};
     updates[`/users/${this.state.uid}/fosterList/${newCatKey}`] = true
     base.database().ref().update(updates);
-    //set state
+    //set state - this will automatically update the firebase due to 2-way binding
     cats[newCatKey] = cat
     this.setState({cats})
+  }
+  updateCat(catKey, cat){
+    const cats = {...this.state.cats};
+    Object.assign(cats[catKey], cat);
+    this.setState({cats});
   }
 
   render() {
@@ -104,9 +110,10 @@ class App extends Component {
         <ul className="list-of-cats">
           {
             Object.keys(this.state.cats)
-                  .map(key => <Cat key={key} index={key} details={this.state.cats[key]} />)
+                  .map(key => <Cat key={key} index={key} details={this.state.cats[key]} updateCat={this.updateCat} />)
           }
         </ul>
+        <h2>This is addCatForm Area</h2>
         <AddCatForm addCat={this.addCat} uid={this.state.uid} />
         <UserProfile />
       </div>

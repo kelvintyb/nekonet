@@ -19,7 +19,7 @@ class AddCatForm extends React.Component {
     return (
         <form ref={(input) => this.catForm = input} className="cat-edit" onSubmit={(e) => this.createCat(e)}>
           <input ref={(input) => this.name = input} type="text" placeholder="Cat Name" />
-          <input ref={(input) => this.age = input} type="text" placeholder="Cat Age" />
+          <input ref={(input) => this.age = input} type="text" placeholder="Cat Age (Months)" />
           <select ref={(input) => this.color = input}>
               <option value="black">Black</option>
               <option value="white">White</option>
@@ -29,7 +29,7 @@ class AddCatForm extends React.Component {
               <option value="others">Others</option>
           </select>
           <input ref={(input) => this.image = input} type="text" placeholder="Cat Image" />
-          <button type="submit">+ Add Item</button>
+          <button type="submit">+ Create Cat</button>
         </form>
     )
   }

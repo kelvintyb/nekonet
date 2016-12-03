@@ -1,11 +1,10 @@
 import React from 'react';
+import EditCatForm from "./EditCatForm"
 import base from "../base"
 
 class Cat extends React.Component {
   //may need to refactor out delete function/button into parent component if Cat component is purely functional
-  updateCat(e){
 
-  }
   removeCat(e){
     e.preventDefault();
     const catKey = this.props.index
@@ -19,7 +18,7 @@ class Cat extends React.Component {
         [`cats/${catKey}`] : null,
         [`users/${catFoster}/fosterList/${catKey}`] : null
       };
-      database.update(removeData);  
+      database.update(removeData);
     })
   }
   render() {
@@ -33,6 +32,7 @@ class Cat extends React.Component {
         </h3>
         <p>{details.age} years old</p>
         <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
+        <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
       </li>
       )
   }
