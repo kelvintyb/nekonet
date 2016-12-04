@@ -24,6 +24,7 @@ const routes = (
           <Route path="/profile/chats" component={Placeholder}/>
           <Route path="/profile/cats" component={Placeholder}/>
         </Route>
+        <Route path="*" component={NotFound} />
       </Route>
     </Router>
 )
