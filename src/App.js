@@ -4,7 +4,7 @@ import Cat from "./components/Cat"
 import AddCatForm from "./components/AddCatForm"
 import UserProfile from "./components/UserProfile"
 import base from "./base"
-import './App.css';
+import './css/App.css';
 
 class App extends Component {
   constructor(){
@@ -35,7 +35,6 @@ class App extends Component {
       this.setState({uid: localUserRef});
     }
   }
-
   componentDidMount(){
     base.onAuth()((user) => {
       if(user){
@@ -43,7 +42,6 @@ class App extends Component {
       }
     })
   }
-
   componentWillUnmount(){
     base.removeBinding(this.ref)
   }
@@ -80,7 +78,6 @@ class App extends Component {
       })
     })
   }
-
   addCat(cat){
     //make a copy of current state.cats
     const cats = {...this.state.cats};

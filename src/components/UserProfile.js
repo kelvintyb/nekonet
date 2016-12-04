@@ -51,7 +51,7 @@ class UserProfile extends React.Component {
       }
     }
   }
-  //display cats for which isForAdoption == true
+
   render() {
     return (
       <div>
