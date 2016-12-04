@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Header from "./components/Header"
+import HeroHeader from "./components/HeroHeader"
+import Footer from "./components/Footer"
 import Cat from "./components/Cat"
 import AddCatForm from "./components/AddCatForm"
 import UserProfile from "./components/UserProfile"
@@ -108,14 +110,16 @@ class App extends Component {
           uid={this.state.uid} authenticate={this.authenticate}
           logout={this.logout}
         />
-      {this.props.children}
+        <HeroHeader />
 
-        <h2>This is addCatForm Area</h2>
-        <AddCatForm addCat={this.addCat} uid={this.state.uid} />
-        <UserProfile />
+        {this.props.children}
+
+        <Footer />
       </div>
     );
   }
 }
-
+// CatIndex needs this.state.cats and this.updateCat
+// <AddCatForm addCat={this.addCat} uid={this.state.uid} />
+// <UserProfile />
 export default App;
