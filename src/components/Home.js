@@ -1,6 +1,6 @@
 import React from 'react';
 
-class HeroHeader extends React.Component {
+class Home extends React.Component {
 
   render() {
     return (
@@ -10,4 +10,4 @@ class HeroHeader extends React.Component {
 
 }
 
-export default HeroHeader;
+export default Home;
