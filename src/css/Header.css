@@ -1,3 +1,8 @@
+/*@media (min-width: 768px){
+  .navbar-nav > li {
+    float: left;
+  }
+}*/
 .facebook {
   background: #3864a3;
   border: 0;
@@ -10,4 +15,34 @@
 
 .facebook::after{
   background: #2d5082;
+}
+.navbar {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 400;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 2px solid #feda4d;
+  text-transform: uppercase;
+}
+
+.navbar-brand img{
+  max-width: 100%;
+  background-repeat: no-repeat;
+  margin-top: -15px;
+}
+
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 2rem 2.5rem;
+}
+
+li a{
+  color: #ff8433 !important;
+}
+li a:hover{
+  color: #3348ff !important;
+}
+.navbar-text{
+  text-transform: capitalize;
 }

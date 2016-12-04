@@ -71,8 +71,12 @@ class App extends Component {
       };
       //update database with user info - using .set will OVERWRITE the entire db, so don't use .set
       database.update(updates);
-      //set user id in both localStorage & state to detect if user isLoggedIn, even if browser is refreshed
+      //set user id & name in both localStorage & state to detect if user isLoggedIn, even if browser is refreshed
+      //NOTE: consider using different storage for display name and image url since localStorage not supported by all browsers
       localStorage.setItem(`localUser`, `${authData.user.uid}`);
+      localStorage.setItem(`localUserName`, `${authData.user.displayName}`)
+      localStorage.setItem(`localUserImage`, `${authData.user.photoURL}`)
+
       this.setState({
         uid: authData.user.uid
       })
@@ -104,12 +108,8 @@ class App extends Component {
           uid={this.state.uid} authenticate={this.authenticate}
           logout={this.logout}
         />
-        <ul className="list-of-cats">
-          {
-            Object.keys(this.state.cats)
-                  .map(key => <Cat key={key} index={key} details={this.state.cats[key]} updateCat={this.updateCat} />)
-          }
-        </ul>
+      {this.props.children}
+
         <h2>This is addCatForm Area</h2>
         <AddCatForm addCat={this.addCat} uid={this.state.uid} />
         <UserProfile />
