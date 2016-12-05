@@ -1,12 +1,13 @@
 import React from 'react';
 import EditCatForm from "./EditCatForm"
 import base from "../base"
+import "../css/Cat.css"
 
 class Cat extends React.Component {
 
   //may need to refactor out delete function/button into parent component if Cat component is purely functional
 
-  //will nd to add conditional render of if(this.state.uid == cat.uid) {render edit btn} else if (this.state.uid){render like/adopt btns}
+  //will nd to add conditional render of if(this.state.uid == cat.uid) {render edit btn} else if (this.state.uid){render like/adopt btns}, also currOwner shld not be able to chat with own cats
 
   removeCat(e){
     e.preventDefault();
