@@ -103,6 +103,18 @@ class App extends Component {
     this.setState({cats});
   }
 
+// NOTE: should refactor into Redux pattern
+  getChildContext(){
+    return {
+      addCat: this.addCat,
+      updateCat: this.updateCat,
+      uid: this.state.uid,
+      userName: this.state.name,
+      userImage: this.state.imageUrl,
+      cats: this.state.cats
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -119,7 +131,14 @@ class App extends Component {
     );
   }
 }
-// CatIndex needs this.state.cats and this.updateCat
-// <AddCatForm addCat={this.addCat} uid={this.state.uid} />
-// <UserProfile />
+
+App.childContextTypes = {
+  addCat: React.PropTypes.func,
+  updateCat: React.PropTypes.func,
+  uid: React.PropTypes.string,
+  userName: React.PropTypes.string,
+  userImage: React.PropTypes.string,
+  cats: React.PropTypes.object
+}
+
 export default App;

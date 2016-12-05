@@ -9,9 +9,9 @@ class AddCatForm extends React.Component {
       color: this.color.value,
       isForAdoption: true,
       imageUrl: this.image.value,
-      uid: this.props.uid
+      uid: this.context.uid
     }
-    this.props.addCat(cat)
+    this.context.addCat(cat)
     this.catForm.reset();
   }
 
@@ -37,5 +37,9 @@ class AddCatForm extends React.Component {
 //property type validation
 AddCatForm.propTypes = {
   addCat: React.PropTypes.func.isRequired
+}
+AddCatForm.contextTypes = {
+  uid: React.PropTypes.string,
+  addCat: React.PropTypes.func
 }
 export default AddCatForm;

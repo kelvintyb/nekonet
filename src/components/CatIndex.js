@@ -7,13 +7,17 @@ class CatIndex extends React.Component {
     return (
       <ul className="list-of-cats">
         {
-          Object.keys(this.props.cats)
-                .map(key => <Cat key={key} index={key} details={this.props.cats[key]} updateCat={this.props.updateCat} />)
+          Object.keys(this.context.cats)
+                .map(key => <Cat key={key} index={key} details={this.context.cats[key]} updateCat={this.context.updateCat} />)
         }
       </ul>
     );
   }
+}
 
+CatIndex.contextTypes = {
+  cats: React.PropTypes.object,
+  updateCat: React.PropTypes.func
 }
 
 export default CatIndex;
