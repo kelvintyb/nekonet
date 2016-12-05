@@ -16,8 +16,8 @@ class Header extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to={{pathname: "/cats"}}>
-                <NavItem eventKey={1} href="/cats">Cats</NavItem>
+              <LinkContainer to={{pathname: "/cats/all"}}>
+                <NavItem eventKey={1} href="/cats/all">Cats</NavItem>
               </LinkContainer>
               <LinkContainer to={{pathname: "/about"}}>
                 <NavItem eventKey={2} href="/about">About Us</NavItem>
