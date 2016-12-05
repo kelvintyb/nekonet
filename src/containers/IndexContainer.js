@@ -11,8 +11,12 @@ class IndexContainer extends React.Component {
           status: "any",
           age: "any",
           color: "any"
-      } //pull from search form, and use to filter out cat pics
+      }
     }
+    this.updateSearch = this.updateSearch.bind(this);
+  }
+  updateSearch(searchParams){
+    this.setState({searchParams})
   }
   //add const cats that filters context.cats to give filtered data to cat display component
   render() {
@@ -20,7 +24,7 @@ class IndexContainer extends React.Component {
     const cats = filterByStatus(status,filterByAge(age, filterByColor(color, this.context.cats)))
     return (
       <div>
-        <SearchForm />
+        <SearchForm updateSearch={this.updateSearch}/>
         <CatDisplay cats={cats} updateCat={this.context.updateCat} />
       </div>
     );
