@@ -7,7 +7,7 @@ import "../css/Header.css";
 class Header extends React.Component {
   render() {
       return (
-        <Navbar staticTop fluid collapseOnSelect>
+        <Navbar fixedTop fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/"><img src="http://res.cloudinary.com/closecl/image/upload/c_scale,h_65/v1480845938/nekonet-logo_oimamp.png" alt="logo" /></a>

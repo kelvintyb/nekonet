@@ -123,8 +123,9 @@ class App extends Component {
           logout={this.logout}
         />
         <HeroHeader />
-
-        {this.props.children}
+        <div className="main-container">
+          {this.props.children}
+        </div>
 
         <Footer />
       </div>

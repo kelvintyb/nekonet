@@ -1,10 +1,10 @@
 .hero-header-home {
    width: 100%;
-   height: 56vh;
-   background-image: url(http://res.cloudinary.com/closecl/image/upload/c_scale,h_500/v1480866156/15321528_10154234526424952_225017150_o_jacpmn.jpg);
+   height: 70vh;
+   background-image: url(http://res.cloudinary.com/closecl/image/upload/c_scale,h_700/v1480866156/15321528_10154234526424952_225017150_o_jacpmn.jpg);
    background-size: cover;
    background-position: center;
-   margin-top:-60px;
+   margin-top: 90px;
 
    .tagline{
      font-size:15px;
