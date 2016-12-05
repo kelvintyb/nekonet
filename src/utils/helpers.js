@@ -7,14 +7,23 @@ const helpers = {
   },
 
   filterByStatus: function(status,collection) {
+    if (status == "any") {
+      return collection
+    }
     return _.filter(collection, (obj) => obj.isForAdoption == status)
   },
 
   filterByAge: function(age,collection) {
+    if (age == "any") {
+      return collection
+    }
     return _.filter(collection, (obj) => obj.age == age)
   },
 
   filterByColor: function(color,collection) {
+    if (color == "any") {
+      return collection
+    }
     return _.filter(collection, (obj) => obj.color == color)
   }
 
