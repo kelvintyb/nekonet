@@ -11,20 +11,16 @@ class UserLogIn extends React.Component {
     if(!this.props.uid) {
         return (
           <ButtonToolbar>
-            <Button bsStyle="primary" bsSize="large" onClick={()=> this.props.authenticate("facebook")} active>Log in with Facebook</Button>
+            <Button bsStyle="primary" bsSize="medium" onClick={()=> this.props.authenticate("facebook")} active>Log in with Facebook</Button>
           </ButtonToolbar>
         )
     }
     return (
       <div>
-        <div class="account">
-          <Navbar.Text>
-            <li>
+        <div className="account">
             Hello, {userName}!
-            </li>
-          </Navbar.Text>
         </div>
-        <div class = "account">
+        <div className = "account">
         <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
           <LinkContainer to={{pathname: "/profile"}}>
             <MenuItem eventKey={3.1}>My Profile</MenuItem>

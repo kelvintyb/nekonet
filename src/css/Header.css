@@ -50,3 +50,10 @@ li a:hover{
 .account {
   display: inline-block;
 }
+
+ul.nav.navbar-nav.navbar-right div {
+  display: inline-block;
+  top: 10px;
+  position: relative;
+  padding-right: 10px
+}
