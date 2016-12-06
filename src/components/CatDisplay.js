@@ -1,15 +1,15 @@
 import React from 'react';
 import Cat from "./Cat"
+import "../css/CatDisplay.css"
 
 const CatDisplay = (props) => {
   return (
-    <ul className="list-of-cats">
+    <div className="gallery">
       {
         Object.keys(props.cats)
         .map(key => <Cat key={key} index={key} details={props.cats[key]} updateCat={props.updateCat} />)
       }
-    </ul>
+    </div>
   )
 }
-
 export default CatDisplay;
