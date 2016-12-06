@@ -7,9 +7,10 @@ class AddCatForm extends React.Component {
       name: this.name.value,
       age: this.age.value,
       color: this.color.value,
-      isForAdoption: true,
+      isForAdoption: "true",
       imageUrl: this.image.value,
-      uid: this.context.uid
+      uid: this.context.uid,
+      likes: 0
     }
     this.context.addCat(cat)
     this.catForm.reset();
@@ -35,9 +36,7 @@ class AddCatForm extends React.Component {
   }
 }
 //property type validation
-AddCatForm.propTypes = {
-  addCat: React.PropTypes.func.isRequired
-}
+
 AddCatForm.contextTypes = {
   uid: React.PropTypes.string,
   addCat: React.PropTypes.func

@@ -2,6 +2,7 @@ import React from 'react';
 import {filterByStatus, filterByAge, filterByColor} from "../utils/helpers"
 import CatDisplay from "../components/CatDisplay"
 import SearchForm from "../components/SearchCatForm"
+import "../css/IndexContainer.css"
 
 class IndexContainer extends React.Component {
   constructor(){
@@ -26,6 +27,9 @@ class IndexContainer extends React.Component {
       <div>
         <SearchForm updateSearch={this.updateSearch}/>
         <CatDisplay cats={cats} updateCat={this.context.updateCat} />
+        <div className="container">
+          {this.props.children}
+        </div>
       </div>
     );
   }
