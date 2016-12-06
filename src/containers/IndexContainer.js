@@ -26,6 +26,7 @@ class IndexContainer extends React.Component {
       <div>
         <SearchForm updateSearch={this.updateSearch}/>
         <CatDisplay cats={cats} updateCat={this.context.updateCat} />
+        {this.props.children}
       </div>
     );
   }
