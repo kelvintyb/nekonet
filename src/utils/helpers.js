@@ -26,4 +26,11 @@ import _ from "lodash"
     return _.filter(collection, (obj) => obj.color == color)
   }
 
-export {filterByUser, filterByStatus, filterByAge, filterByColor}
+  let getById = (id, collectionName) => {
+    //use id to grab user/cat/chatroom obj from root db
+  };
+  let updateById = (id, collectionName, data) => {
+    //use id to update user/cat/chatroom obj with new data
+  }
+
+export {filterByUser, filterByStatus, filterByAge, filterByColor, getById, updateById}

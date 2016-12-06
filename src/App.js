@@ -21,7 +21,8 @@ class App extends Component {
       //this is for detection of logged in user
       uid: null,
       //cats - note that age is going to be in terms of months
-      cats: {}
+      cats: {},
+      chatRooms: {}
     }
   }
   componentWillMount(){
