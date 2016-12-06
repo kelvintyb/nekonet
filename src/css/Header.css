@@ -46,3 +46,7 @@ li a:hover{
 .navbar-text{
   text-transform: capitalize;
 }
+
+.account {
+  display: inline-block;
+}

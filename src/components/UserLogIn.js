@@ -17,11 +17,14 @@ class UserLogIn extends React.Component {
     }
     return (
       <div>
-        <li>
+        <div class="account">
           <Navbar.Text>
+            <li>
             Hello, {userName}!
+            </li>
           </Navbar.Text>
-        </li>
+        </div>
+        <div class = "account">
         <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
           <LinkContainer to={{pathname: "/profile"}}>
             <MenuItem eventKey={3.1}>My Profile</MenuItem>
@@ -35,6 +38,7 @@ class UserLogIn extends React.Component {
           <MenuItem divider />
           <MenuItem eventKey={3.4} onSelect={this.props.logout}>Logout</MenuItem>
         </NavDropdown>
+        </div>
       </div>
     );
   }
