@@ -22,7 +22,6 @@ class App extends Component {
       uid: null,
       //cats - note that age is going to be in terms of months
       cats: {},
-      chatRooms: {}
     }
   }
   componentWillMount(){
@@ -31,6 +30,7 @@ class App extends Component {
       context: this,
       state: "cats"
     });
+
     //check for loggedIn User
     const localUserRef = localStorage.getItem("localUser");
     if (localUserRef){
