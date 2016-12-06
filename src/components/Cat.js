@@ -1,7 +1,7 @@
 import React from 'react';
 import EditCatForm from "./EditCatForm"
 import base from "../base"
-import "../css/Cat.css"
+// import "../css/Cat.css"
 
 class Cat extends React.Component {
 
@@ -27,17 +27,17 @@ class Cat extends React.Component {
   }
   render() {
     const {details} = this.props;
+
     return(
-      <li className="menu-cat">
+      <div className="gallery-item">
         <img src={details.imageUrl} alt={details.name} />
-        <h3 className="cat-name">
-          {details.name}
-          <span className="status">{details.status}</span>
-        </h3>
-        <p>{details.age} months old</p>
-        <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
-        <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
-      </li>
+        <span className="text-wrapper">
+          <span className="name">{details.name}</span>
+          <span className="age">{details.age} months old</span>
+          <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
+          <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
+        </span>
+      </div>
       )
   }
 

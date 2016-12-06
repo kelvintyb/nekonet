@@ -21,7 +21,7 @@ class App extends Component {
       //this is for detection of logged in user
       uid: null,
       //cats - note that age is going to be in terms of months
-      cats: {}
+      cats: {},
     }
   }
   componentWillMount(){
@@ -30,6 +30,7 @@ class App extends Component {
       context: this,
       state: "cats"
     });
+
     //check for loggedIn User
     const localUserRef = localStorage.getItem("localUser");
     if (localUserRef){
@@ -102,6 +103,8 @@ class App extends Component {
     Object.assign(cats[catKey], cat);
     this.setState({cats});
   }
+
+//for like and unlike, just editCat as handler of the cat like and unlike btns and then use updateCat
 
 // NOTE: should refactor into Redux pattern
   getChildContext(){
