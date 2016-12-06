@@ -14,7 +14,7 @@ class UserProfile extends React.Component {
 
         </section>
         <section className="pull-right">
-          <CatDisplay />
+          {this.props.children}
         </section>
       </div>
     );

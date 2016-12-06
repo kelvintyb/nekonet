@@ -6,6 +6,7 @@ class ProfileContainer extends React.Component {
     return (
       <div className="main-container">
         <h1>ProfileContainer here</h1>
+
       </div>
     );
   }
