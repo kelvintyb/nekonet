@@ -7,7 +7,7 @@ class AddCatForm extends React.Component {
       name: this.name.value,
       age: this.age.value,
       color: this.color.value,
-      isForAdoption: true,
+      isForAdoption: "true",
       imageUrl: this.image.value,
       uid: this.context.uid,
       likes: 0

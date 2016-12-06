@@ -19,7 +19,7 @@ class SearchCatForm extends React.Component {
         </select>
         <input ref={(input) => this.age = input} type="text" placeholder="Cat Age (Months)" />
         <select ref={(input) => this.color = input}>
-            <option value="black">Any</option>
+            <option value="any">Any</option>
             <option value="black">Black</option>
             <option value="white">White</option>
             <option value="calico">Calico</option>
