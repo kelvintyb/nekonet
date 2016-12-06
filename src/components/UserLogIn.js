@@ -11,17 +11,16 @@ class UserLogIn extends React.Component {
     if(!this.props.uid) {
         return (
           <ButtonToolbar>
-            <Button bsStyle="primary" bsSize="large" onClick={()=> this.props.authenticate("facebook")} active>Log in with Facebook</Button>
+            <Button bsStyle="primary" bsSize="medium" onClick={()=> this.props.authenticate("facebook")} active>Log in with Facebook</Button>
           </ButtonToolbar>
         )
     }
     return (
       <div>
-        <li>
-          <Navbar.Text>
+        <div className="account">
             Hello, {userName}!
-          </Navbar.Text>
-        </li>
+        </div>
+        <div className = "account">
         <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
           <LinkContainer to={{pathname: "/profile"}}>
             <MenuItem eventKey={3.1}>My Profile</MenuItem>
@@ -35,6 +34,7 @@ class UserLogIn extends React.Component {
           <MenuItem divider />
           <MenuItem eventKey={3.4} onSelect={this.props.logout}>Logout</MenuItem>
         </NavDropdown>
+        </div>
       </div>
     );
   }

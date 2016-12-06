@@ -3,3 +3,64 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.feature {
+    margin: 50px auto 0;
+    max-width: 400px;
+}
+
+.wide-space {
+    letter-spacing: 1.6px;
+}
+
+.icon-lg {
+    font-size: 50px;
+    line-height: 18px;
+}
+
+.bg-primary {
+    background-color: #333;
+}
+
+.bg-dark {
+    color: #eee;
+    background-color: #222;
+}
+
+.text-faded {
+    color: rgba(245,245,245,0.7);
+}
+
+.text-dark {
+    color: #111;
+}
+
+.text-primary {
+    color: #ff8433;
+}
+
+.modal-content {
+    background-color: #1d1d1d;
+}
+
+.margin-top-0 {
+    margin-top: 0;
+}
+
+section {
+    padding: 70px 0;
+}
+
+aside {
+    padding: 50px 0;
+}
