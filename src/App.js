@@ -136,9 +136,7 @@ class App extends Component {
           uid={this.state.uid} authenticate={this.authenticate}
           logout={this.logout}
         />
-        <div className="main-container">
-          {this.props.children}
-        </div>
+        {this.props.children}
 
         <Footer />
       </div>

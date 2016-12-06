@@ -6,7 +6,8 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <section id="two">
+        <HeroHeader />
+        <section id="two" className="main-container">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 text-center">

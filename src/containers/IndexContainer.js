@@ -24,7 +24,7 @@ class IndexContainer extends React.Component {
     const {status, age, color} = this.state.searchParams;
     const cats = filterByStatus(status,filterByAge(age, filterByColor(color, this.context.cats)))
     return (
-      <div>
+      <div className="main-container">
         <SearchForm updateSearch={this.updateSearch}/>
         <CatDisplay cats={cats} updateCat={this.context.updateCat} />
         <div className="container">
