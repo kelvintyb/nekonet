@@ -1,4 +1,5 @@
 import React from 'react';
+import HeroHeader from "../components/HeroHeader"
 
 class Home extends React.Component {
 

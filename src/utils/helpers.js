@@ -29,6 +29,7 @@ import base from "../base.js"
 
   let findById = (id, collectionName) => {
     //use id to grab user/cat/chatroom obj from root db
+    // http://stackoverflow.com/questions/35552571/how-to-use-firebase-query-equaltovalue-key
   };
   let updateById = (id, collectionName, data) => {
     //use id to update user/cat/chatroom obj with new data

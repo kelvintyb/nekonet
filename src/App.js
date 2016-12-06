@@ -11,6 +11,7 @@ import './css/App.css';
 class App extends Component {
   constructor(){
     super();
+    this.addChat = this.addChat.bind(this);
     this.addCat = this.addCat.bind(this);
     this.updateCat = this.updateCat.bind(this);
     this.authenticate = this.authenticate.bind(this);
@@ -22,6 +23,8 @@ class App extends Component {
       uid: null,
       //cats - note that age is going to be in terms of months
       cats: {},
+      //for chat tracking
+      currChatroom: null
     }
   }
   componentWillMount(){
@@ -104,11 +107,19 @@ class App extends Component {
     this.setState({cats});
   }
 
-//for like and unlike, just editCat as handler of the cat like and unlike btns and then use updateCat
+  //for like and unlike, just editCat as handler of the cat like and unlike btns and then use updateCat
+
+  addChat(chatKey, chat){
+    //update chatrooms in firebase"
+    let updates = {};
+    updates[`/chatrooms/${chatKey}`] = chat;
+    base.database().ref().update(updates);
+  }
 
 // NOTE: should refactor into Redux pattern
   getChildContext(){
     return {
+      addChat: this.addChat,
       addCat: this.addCat,
       updateCat: this.updateCat,
       uid: this.state.uid,
@@ -125,7 +136,6 @@ class App extends Component {
           uid={this.state.uid} authenticate={this.authenticate}
           logout={this.logout}
         />
-        <HeroHeader />
         <div className="main-container">
           {this.props.children}
         </div>
@@ -137,6 +147,7 @@ class App extends Component {
 }
 
 App.childContextTypes = {
+  addChat: React.PropTypes.func,
   addCat: React.PropTypes.func,
   updateCat: React.PropTypes.func,
   uid: React.PropTypes.string,
