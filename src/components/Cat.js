@@ -27,6 +27,23 @@ class Cat extends React.Component {
       database.update(removeData);
     })
   }
+  createChatroom(e){
+    const {details} = this.props;
+    const catKey = this.props.index
+    const newChatKey = base.database().ref().child("chatrooms").push().key;
+    const chat = {
+      id: newChatKey,
+      name: `${details.name} fostered by: ${details.name}`,
+      imageUrl: `${details.imageUrl}`,
+      users: {
+        [details.uid]: true,
+        [this.context.uid]: true
+      },
+      cat: catKey,
+      messages: {}
+    }
+    this.context.addChat(newChatKey, chat)
+  }
   render() {
     const {details} = this.props;
 
@@ -38,11 +55,15 @@ class Cat extends React.Component {
           <span className="age">{details.age} months old</span>
           <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
           <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
+          <button onClick={(e) => this.createChatroom(e)}>Chat</button>
+
         </span>
       </div>
-      )
+    )
   }
-
 }
-
+Cat.contextTypes = {
+  addChat: React.PropTypes.func,
+  uid: React.PropTypes.string
+}
 export default Cat;
