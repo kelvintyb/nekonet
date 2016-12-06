@@ -3,6 +3,8 @@ import EditCatForm from "./EditCatForm"
 import base from "../base"
 // import "../css/Cat.css"
 
+//will nd to use http://bootsnipp.com/snippets/v7VyB for image gallery
+
 class Cat extends React.Component {
 
   //may need to refactor out delete function/button into parent component if Cat component is purely functional
