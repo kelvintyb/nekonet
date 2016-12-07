@@ -2,7 +2,7 @@ import React from 'react';
 import ChannelList from "../components/ChannelList"
 import ChatRoom from "../components/ChatRoom"
 import base from "../base.js"
-import {findById} from "../utils/helpers"
+import {findById, filterCollectionByKeys} from "../utils/helpers"
 import "../css/ChatContainer.css"
 
 class ChatroomContainer extends React.Component {
@@ -44,30 +44,33 @@ class ChatroomContainer extends React.Component {
   }
 
   onSendMessage(author, text) {
-      const new_message = {
-        id: this.state.messages[this.state.messages.length -1].id +1,
-        author,
-        text,
-        channel_id: currChatroom
-      };
-    const messages = [...this.state.messages, new_message];
-    this.setState ({messages});
+    //   const new_message = {
+    //     id: this.state.messages[this.state.messages.length -1].id +1,
+    //     author,
+    //     text,
+    //     channel_id: currChatroom
+    //   };
+    // const messages = [...this.state.messages, new_message];
+    // this.setState ({messages});
   }
 
   render() {
     const localUserRef = this.context.uid;
     const localUserName = this.context.userName;
-    const currChatroom = this.context.currChatroom
-
+    const currChatroom = this.context.currChatroom;
+    const user = findById(localUserRef , "users");
+    const userChatKeyArray = Object.keys(user.chatList);
+    const userChats = filterCollectionByKeys(userChatKeyArray, this.state.chatrooms);
+    const chatRoomDatabase = base.database().ref(`chatrooms`)
+    const currMessages = findById(currChatroom, chatRoomDatabase)["messages"]
 
     return (
       <div className="chat-container">
-        <ChannelList channels={channels that currUser is subscribed to} selectedChannelId={currChatroom} />
-        <MessagePane currUserName={localUserName} currUserId={localUserRef} channel={currChatroom} messages={messages of current chatroom} onSendMessage={this.onSendMessage} />
+        <ChannelList channels={userChats} selectedChannelId={currChatroom} />
+        <MessagePane currUserName={localUserName} currUserId={localUserRef} channel={currChatroom} messages={currMessages} onSendMessage={this.onSendMessage} />
       </div>
     );
   }
-
 }
 
 ChatroomContainer.contextTypes = {

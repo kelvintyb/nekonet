@@ -30,7 +30,9 @@ import base from "../base.js"
   }
 
   let findById = (id, collectionUrl) => {
-    return base.database().ref(`${collectionUrl}/${id}`)
+    let result;
+    base.database().ref(`${collectionUrl}/${id}`).on("value", (snapshot) => { result = snapshot.val()})
+    return result;
   };
 
   let updateById = (id, collectionUrl, data) => {
@@ -40,11 +42,11 @@ import base from "../base.js"
   }
 
   let filterCollectionByKeys = (keyArray, collection) => {
-    let result = {};
+    let result = [];
     keyArray.forEach((key) => {
       for (var collectionKey in collection) {
         if (key === collectionKey) {
-          result[key] = collection[collectionKey]
+          result.push(collection[collectionKey])
         }
       }
     })

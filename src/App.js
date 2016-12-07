@@ -86,7 +86,7 @@ class App extends Component {
       localStorage.setItem(`localUserImage`, `${authData.user.photoURL}`)
 
       this.setState({
-        uid: authData.user.uid
+        uid: authData.user.uid,
         name: authData.user.displayName,
         imageUrl: authData.user.photoURL
       })
@@ -111,15 +111,16 @@ class App extends Component {
     this.setState({cats});
   }
 
-  //for like and unlike, just editCat as handler of the cat like and unlike btns and then use updateCat
+  //TODO:for like and unlike, just editCat as handler of the cat like and unlike btns and then use updateCat
 
   addChat(chatKey, chat){
     //update chatrooms in firebase"
     let updates = {};
     updates[`/chatrooms/${chatKey}`] = chat;
     updates[`/users/${this.state.uid}/chatList/${chatKey}`] = true;
+    console.log(updates)
     base.database().ref().update(updates);
-    setState({currChatroom: chatKey});
+    this.setState({currChatroom: chatKey});
     //transition to chatroom route
     this.context.router.push("/chats")
   }

@@ -15,9 +15,11 @@ const Message = ({author, text}) => (
 const List = ({messages}) => (
   <div className="MessagePane-List">
     //need to use Object.keys to turn into message
-    {messages.map(({id, author, text}) => <Message key={id} author={author} text={text} />) }
   </div>
 );
+
+// {messages.map(({id, author, text}) => <Message key={id} author={author} text={text} />) }
+
 
 const MessagePane = ({messages, onSendMessage}) => (
   <div className="MessagePane">

@@ -26,9 +26,14 @@ class Cat extends React.Component {
   }
   createChatroom(e){
     const {details} = this.props;
-    const catKey = this.props.index
-    const fosterUid = base.database().ref(`cats/${catKey}`).uid
-    const fosterName = base.database().ref(`users/${fosterUid}`).displayName
+    const catKey = this.props.index;
+    let fosterName;
+    base.database().ref(`users/${details.uid}`).once("value").then((snapshot) => {
+        fosterName = snapshot.val().name
+        console.log(fosterName)
+      }
+    )
+
     const newChatKey = base.database().ref().child("chatrooms").push().key;
     const chat = {
       id: newChatKey,
