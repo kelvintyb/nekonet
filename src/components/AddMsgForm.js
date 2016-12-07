@@ -3,24 +3,20 @@ import React, { Component } from 'react';
 class AddMsgForm extends Component {
   constructor() {
     super();
-
     this.state = {
-      name: this.props.name,
-      message: '',
-      chatroom_id: this.props.channel      
+      name: localStorage.getItem("localUserName"),
+      message: ''
     }
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.updateName = this.updateName.bind(this);
     this.updateMessage = this.updateMessage.bind(this);
   }
   // get name and message and put it into database
 
   onSubmit() {
     const { name, message } = this.state;
-    console.log(name, message);
     this.props.onSend(name, message);
-    this.setState({ name:"", message: "" })
+    this.setState({ message: "" })
   }
 
   updateMessage(event) {
@@ -47,6 +43,11 @@ class AddMsgForm extends Component {
       </div>
     )
   }
+}
+
+AddMsgForm.contextTypes = {
+  currChatroom: React.PropTypes.string,
+  onSendMessage: React.PropTypes.func
 }
 
 export default AddMsgForm;

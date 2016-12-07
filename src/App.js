@@ -17,6 +17,7 @@ class App extends Component {
     this.authenticate = this.authenticate.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.logout = this.logout.bind(this);
+    this.updateCurrChat = this.updateCurrChat.bind(this)
 
     this.state = {
       //this is for detection of logged in user
@@ -25,6 +26,7 @@ class App extends Component {
       imageUrl: null,
       //cats - note that age is going to be in terms of months
       cats: {},
+      users: {},
       //for chat tracking
       currChatroom: null
     }
@@ -35,12 +37,19 @@ class App extends Component {
       context: this,
       state: "cats"
     });
+    this.ref = base.syncState("/users", {
+      context: this,
+      state: "users"
+    });
 
     //check for loggedIn User
     const localUserRef = localStorage.getItem("localUser");
     if (localUserRef){
       //update App state.uid
       this.setState({uid: localUserRef});
+    }
+    if (localStorage.getItem("currChat")){
+      this.setState({currChatroom: localStorage.getItem("currChat")})
     }
   }
   componentDidMount(){
@@ -117,12 +126,20 @@ class App extends Component {
     //update chatrooms in firebase"
     let updates = {};
     updates[`/chatrooms/${chatKey}`] = chat;
-    updates[`/users/${this.state.uid}/chatList/${chatKey}`] = true;
+    updates[`/users/${chat.users[0]}/chatList/${chatKey}`] = true;
+    updates[`/users/${chat.users[1]}/chatList/${chatKey}`] = true;
     console.log(updates)
+    console.log(this.state.cats)
+    console.log(this.state.users)
     base.database().ref().update(updates);
-    this.setState({currChatroom: chatKey});
-    //transition to chatroom route
+    this.updateCurrChat(chatKey)
+    localStorage.setItem(`currChat`, `${chatKey}`);
+      //transition to chatroom route
     this.context.router.push("/chats")
+  }
+
+  updateCurrChat (chatKey) {
+    this.setState({currChatroom: chatKey})
   }
 
 // NOTE: should refactor into Redux pattern
@@ -135,7 +152,9 @@ class App extends Component {
       uid: this.state.uid,
       userName: this.state.name,
       userImage: this.state.imageUrl,
-      cats: this.state.cats
+      cats: this.state.cats,
+      users: this.state.users,
+      updateCurrChat: this.updateCurrChat
     }
   }
 
@@ -159,6 +178,7 @@ App.contextTypes = {
 }
 
 App.childContextTypes = {
+  users: React.PropTypes.object,
   currChatroom: React.PropTypes.string,
   addChat: React.PropTypes.func,
   addCat: React.PropTypes.func,
@@ -166,7 +186,8 @@ App.childContextTypes = {
   uid: React.PropTypes.string,
   userName: React.PropTypes.string,
   userImage: React.PropTypes.string,
-  cats: React.PropTypes.object
+  cats: React.PropTypes.object,
+  updateCurrChat: React.PropTypes.func
 }
 
 export default App;

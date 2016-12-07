@@ -29,10 +29,12 @@ import base from "../base.js"
     return _.filter(collection, (obj) => obj.color === color)
   }
 
-  let findById = (id, collectionUrl) => {
-    let result;
-    base.database().ref(`${collectionUrl}/${id}`).on("value", (snapshot) => { result = snapshot.val()})
-    return result;
+  let findById = (id, collection) => {
+    for (var key in collection){
+      if (key === id) {
+        return collection[key]
+      }
+    }
   };
 
   let updateById = (id, collectionUrl, data) => {
@@ -52,6 +54,13 @@ import base from "../base.js"
     })
     return result;
   }
+  let arrayFrom = (nestedObj) => {
+    let result = [];
+    for (var key in nestedObj){
+      result.push(nestedObj[key])
+    }
+    return result
+  }
 
 
-export {filterByUser, filterByStatus, filterByAge, filterByColor, findById, updateById}
+export {filterByUser, filterByStatus, filterByAge, filterByColor, findById, updateById, filterCollectionByKeys, arrayFrom}

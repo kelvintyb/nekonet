@@ -1,6 +1,6 @@
 import React from 'react';
 import ChannelList from "../components/ChannelList"
-import ChatRoom from "../components/ChatRoom"
+import MessagePane from "../components/MessagePane"
 import base from "../base.js"
 import {findById, filterCollectionByKeys} from "../utils/helpers"
 import "../css/ChatContainer.css"
@@ -9,8 +9,11 @@ class ChatroomContainer extends React.Component {
   constructor(){
     super();
     this.state = {
-      chatrooms: {}
+      chatrooms: null,
+      channel: null
     }
+    this.onChannelSelect = this.onChannelSelect.bind(this);
+    this.onSendMessage = this.onSendMessage.bind(this);
   }
   // chatroomkey1 : {
   //  id: chatroomkey1,
@@ -31,52 +34,65 @@ class ChatroomContainer extends React.Component {
   //   //same as above
   //
   // }
-
   componentWillMount(){
     this.ref = base.syncState("/chatrooms", {
       context: this,
       state: "chatrooms"
     });
   }
-
   componentWillUnmount(){
     base.removeBinding(this.ref)
   }
 
+  onChannelSelect(id) {
+    this.context.updateCurrChat(id);
+    this.setState({channel: id})
+    this.context.router.push(`/chats/${id}`)
+  }
   onSendMessage(author, text) {
-    //   const new_message = {
-    //     id: this.state.messages[this.state.messages.length -1].id +1,
-    //     author,
-    //     text,
-    //     channel_id: currChatroom
-    //   };
-    // const messages = [...this.state.messages, new_message];
-    // this.setState ({messages});
+    const currChatroom = this.context.currChatroom;
+    const msgKey = base.database().ref(`/chatrooms/${currChatroom}/messages`).push().key;
+    let updates = {};
+    updates[`/chatrooms/${currChatroom}/messages/${msgKey}`] = {author, text}
+    base.database().ref().update(updates);
+  }
+
+  getChildContext(){
+    return {
+      chatrooms: this.state.chatrooms,
+      onSendMessage: this.onSendMessage
+    }
   }
 
   render() {
     const localUserRef = this.context.uid;
-    const localUserName = this.context.userName;
     const currChatroom = this.context.currChatroom;
-    const user = findById(localUserRef , "users");
+    //BUG: this.context.users not filled on direct URL refresh - suspect the syncState request not complete from Appcontainer, will nd to either 1) syncstate of users in this container instead or 2) use a firebase .once("value").then to grab right user
+    const user = findById(localUserRef, this.context.users);
     const userChatKeyArray = Object.keys(user.chatList);
     const userChats = filterCollectionByKeys(userChatKeyArray, this.state.chatrooms);
-    const chatRoomDatabase = base.database().ref(`chatrooms`)
-    const currMessages = findById(currChatroom, chatRoomDatabase)["messages"]
-
     return (
-      <div className="chat-container">
-        <ChannelList channels={userChats} selectedChannelId={currChatroom} />
-        <MessagePane currUserName={localUserName} currUserId={localUserRef} channel={currChatroom} messages={currMessages} onSendMessage={this.onSendMessage} />
+      <div className="main-container chat-wrapper">
+        <ChannelList channels={userChats} selectedChannelId={currChatroom} onSelect={this.onChannelSelect}/>
+        {this.props.children}
       </div>
     );
   }
 }
 
 ChatroomContainer.contextTypes = {
+  router: React.PropTypes.object,
   currChatroom: React.PropTypes.string,
   uid: React.PropTypes.string,
   userName: React.PropTypes.string,
-  userImage: React.PropTypes.string
+  userImage: React.PropTypes.string,
+  users: React.PropTypes.object,
+  updateCurrChat: React.PropTypes.func
 }
+
+ChatroomContainer.childContextTypes = {
+  chatrooms: React.PropTypes.object,
+  onSendMessage: React.PropTypes.func
+}
+
 export default ChatroomContainer;

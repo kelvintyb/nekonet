@@ -1,36 +1,75 @@
 import React from 'react';
 import AddMsgForm from './AddMsgForm';
+import {findById, arrayFrom} from "../utils/helpers";
 import '../css/MessagePane.css';
 
-
-const Message = ({author, text}) => (
+const Message = (props) => (
   <div className="Message">
-      <div className="Message-author">{author}
+      <div className="Message-author">{props.author}
       </div>
-      <div className="Message-text">{text}
+      <div className="Message-text">{props.text}
       </div>
   </div>
 );
 
-const List = ({messages}) => (
-  <div className="MessagePane-List">
-    //need to use Object.keys to turn into message
-  </div>
-);
+class List extends React.Component {
+  render(){
+    let messages;
+    if (this.props.messages == "isUndefined"){
+      messages = (
+        <h2> Enter your first message below! </h2>
+      )
+    } else {
+      messages = (
+        arrayFrom(this.props.messages).map(function({author, text}, index) {
+          return <Message key={index} author={author} text={text}/>
+        })
+      )
+    }
+    console.log(this.props.messages)
+    return(
+      <div className="MessagePane-List">
+        {messages}
+      </div>
+    )
+  }
+}
 
-// {messages.map(({id, author, text}) => <Message key={id} author={author} text={text} />) }
+class MessagePane extends React.Component {
+  constructor(){
+    super()
+  }
+  render(){
+
+    const messages = (findById(this.props.params.id, this.context.chatrooms).messages) || "isUndefined"
+    const name = this.context.userName
+    return(
+      <div className="MessagePane">
+        <List messages={messages} />
+        <AddMsgForm name={name} channel={this.context.currChatroom} onSend={this.context.onSendMessage} />
+      </div>
+    )
+  }
+}
+// const localUserRef = this.context.uid;
+// const localUserName = this.context.userName;
+// const user = findById(localUserRef, this.context.users);
+// const userChatKeyArray = Object.keys(user.chatList);
+// const userChats = filterCollectionByKeys(userChatKeyArray, this.state.chatrooms);
+// const chatRoomDatabase = this.state.chatrooms
+// const currChatObj = findById(currChatroom, chatRoomDatabase)
 
 
-const MessagePane = ({messages, onSendMessage}) => (
-  <div className="MessagePane">
-    <List messages={messages} />
-    <AddMsgForm name={this.props.currUserName} channel={this.props.channel} onSend={onSendMessage} />
-  </div>
-);
-// app passes the function to MessagePane, then MessagePane passes the function to Form, then when you click on the button just follows blindly.
-
+// <MessagePane currUserName={localUserName} currUserId={localUserRef} channel={currChatroom} currChatObj={currChatObj} onSendMessage={this.onSendMessage} />
 MessagePane.defaultProps = {
-  messages: {}
+  messages: []
 };
+
+MessagePane.contextTypes = {
+  userName: React.PropTypes.string,
+  currChatroom: React.PropTypes.string,
+  chatrooms: React.PropTypes.object,
+  onSendMessage: React.PropTypes.func
+}
 
 export default MessagePane;

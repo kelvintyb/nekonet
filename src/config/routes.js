@@ -2,7 +2,7 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from "react-router";
 import App from '../App';
-
+import MessagePane from "../components/MessagePane"
 import About from "../components/About";
 import Home from "../components/Home";
 import NotFound from "../components/NotFound"
@@ -32,7 +32,9 @@ const routes = (
           <Route path="/cats/add" component={AddCatForm}/>
           <Route path="/cats/:id/edit" component={EditCatForm}/>
         </Route>
-        <Route path="/chats" component={ChatroomContainer} />
+        <Route path="/chats" component={ChatroomContainer}>
+          <Route path="/chats/:id" component={MessagePane}/>
+        </Route>
         <Route path="/profile" component={UserProfile}>
           <Route path="/profile/likelist" component={CatDisplay}/>
           <Route path="/profile/cats" component={CatDisplay}>

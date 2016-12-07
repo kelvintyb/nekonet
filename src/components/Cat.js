@@ -1,6 +1,7 @@
 import React from 'react';
 import EditCatForm from "./EditCatForm"
 import base from "../base"
+import {findById} from "../utils/helpers"
 // import "../css/Cat.css"
 
 //will nd to use http://bootsnipp.com/snippets/v7VyB for image gallery
@@ -27,13 +28,7 @@ class Cat extends React.Component {
   createChatroom(e){
     const {details} = this.props;
     const catKey = this.props.index;
-    let fosterName;
-    base.database().ref(`users/${details.uid}`).once("value").then((snapshot) => {
-        fosterName = snapshot.val().name
-        console.log(fosterName)
-      }
-    )
-
+    let fosterName = findById(details.uid, this.context.users).name
     const newChatKey = base.database().ref().child("chatrooms").push().key;
     const chat = {
       id: newChatKey,
@@ -52,6 +47,7 @@ class Cat extends React.Component {
     const {details} = this.props;
 
     return(
+
       <div className="gallery-item">
         <img src={details.imageUrl} alt={details.name} />
         <span className="text-wrapper">
@@ -68,6 +64,10 @@ class Cat extends React.Component {
 }
 Cat.contextTypes = {
   addChat: React.PropTypes.func,
-  uid: React.PropTypes.string
+  uid: React.PropTypes.string,
+  users: React.PropTypes.object,
+  router: React.PropTypes.object
+
+
 }
 export default Cat;
