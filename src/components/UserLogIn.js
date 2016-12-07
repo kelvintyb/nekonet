@@ -15,6 +15,7 @@ class UserLogIn extends React.Component {
           </ButtonToolbar>
         )
     }
+    
     return (
       <div>
         <div className="account">
@@ -23,16 +24,16 @@ class UserLogIn extends React.Component {
         <div className = "account">
         <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
           <LinkContainer to={{pathname: "/profile"}}>
-            <MenuItem eventKey={3.1}>My Profile</MenuItem>
+            <MenuItem className="navlinks" eventKey={3.1}>My Profile</MenuItem>
           </LinkContainer>
           <LinkContainer to={{pathname: "/profile/cats"}}>
-            <MenuItem eventKey={3.2}>My Cats</MenuItem>
+            <MenuItem className="navlinks" eventKey={3.2}>My Cats</MenuItem>
           </LinkContainer>
           <LinkContainer to={{pathname: "/chats"}}>
-            <MenuItem eventKey={3.3}>My Chats</MenuItem>
+            <MenuItem className="navlinks" eventKey={3.3}>My Chats</MenuItem>
           </LinkContainer>
           <MenuItem divider />
-          <MenuItem eventKey={3.4} onSelect={this.props.logout}>Logout</MenuItem>
+          <MenuItem className="navlinks" eventKey={3.4} onSelect={this.props.logout}>Logout</MenuItem>
         </NavDropdown>
         </div>
       </div>

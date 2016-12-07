@@ -15,7 +15,7 @@ class HeroHeader extends React.Component {
                  <a href="#one" className="btn btn-primary btn-xl page-scroll">Get Started</a>
               </div>
           </div>
-          <video autoPlay="true" loop="true" className="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background" src="../media/nekobg.mp4" type="video/mp4">
+          <video autoPlay="true" loop="true" className="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="../media/cat-background" id="video-background" src="../media/nekobg.mp4" type="video/mp4">
               // <source  type="video/mp4"/>
           </video>
         </header>

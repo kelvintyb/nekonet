@@ -37,12 +37,18 @@
   padding: 2rem 2.5rem;
 }
 
-li a{
+.navlinks a{
   color: #ff8433 !important;
 }
-li a:hover{
+
+.account a{
+  color: #ff8433 !important;
+}
+
+.navlinks a:hover {
   color: #3348ff !important;
 }
+
 .navbar-text{
   text-transform: capitalize;
 }
@@ -50,6 +56,7 @@ li a:hover{
 .account {
   display: inline-block;
 }
+
 
 ul.nav.navbar-nav.navbar-right div {
   display: inline-block;
