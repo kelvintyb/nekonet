@@ -2,6 +2,7 @@ import React from 'react';
 import ChannelList from "../components/ChannelList"
 import ChatRoom from "../components/ChatRoom"
 import base from "../base.js"
+import {findById} from "../utils/helpers"
 import "../css/ChatContainer.css"
 
 class ChatroomContainer extends React.Component {
@@ -18,8 +19,10 @@ class ChatroomContainer extends React.Component {
   //   cat: this.cat
   //   messages: {
   //     message1key: {
-  //       name: localStorage.displayName,
-  //       msg: textfield
+  //       author: localStorage.displayName,
+  //       text: textfield
+  //       chatroom_id: currChatroom
+  //
   //     } ,
   //     message2key: {}
   //   }
@@ -45,24 +48,32 @@ class ChatroomContainer extends React.Component {
         id: this.state.messages[this.state.messages.length -1].id +1,
         author,
         text,
-        channel_id: 1
+        channel_id: currChatroom
       };
     const messages = [...this.state.messages, new_message];
     this.setState ({messages});
   }
 
   render() {
-    const localUserRef = localStorage.getItem("localUser");
-    const localUserName = localStorage.getItem("localUserName")
+    const localUserRef = this.context.uid;
+    const localUserName = this.context.userName;
+    const currChatroom = this.context.currChatroom
+
 
     return (
       <div className="chat-container">
-        <ChannelList channels={this.state.channels} selectedChannelId={null} />
-        <MessagePane messages={this.state.channels} onSendMessage={this.onSendMessage} />
+        <ChannelList channels={channels that currUser is subscribed to} selectedChannelId={currChatroom} />
+        <MessagePane currUserName={localUserName} currUserId={localUserRef} channel={currChatroom} messages={messages of current chatroom} onSendMessage={this.onSendMessage} />
       </div>
     );
   }
 
 }
 
+ChatroomContainer.contextTypes = {
+  currChatroom: React.PropTypes.string,
+  uid: React.PropTypes.string,
+  userName: React.PropTypes.string,
+  userImage: React.PropTypes.string
+}
 export default ChatroomContainer;

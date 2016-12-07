@@ -6,9 +6,6 @@ import base from "../base"
 //will nd to use http://bootsnipp.com/snippets/v7VyB for image gallery
 
 class Cat extends React.Component {
-
-  //may need to refactor out delete function/button into parent component if Cat component is purely functional
-
   //will nd to add conditional render of if(this.state.uid == cat.uid) {render edit btn} else if (this.state.uid){render like/adopt btns}, also currOwner shld not be able to chat with own cats
 
   removeCat(e){
@@ -30,17 +27,19 @@ class Cat extends React.Component {
   createChatroom(e){
     const {details} = this.props;
     const catKey = this.props.index
+    const fosterUid = base.database().ref(`cats/${catKey}`).uid
+    const fosterName = base.database().ref(`users/${fosterUid}`).displayName
     const newChatKey = base.database().ref().child("chatrooms").push().key;
     const chat = {
       id: newChatKey,
-      name: `${details.name} fostered by: ${details.name}`,
+      name: `${details.name} fostered by: ${fosterName}`,
       imageUrl: `${details.imageUrl}`,
       users: {
         [details.uid]: true,
         [this.context.uid]: true
       },
       cat: catKey,
-      messages: {}
+      messages: {} //NOTE: this will likely cause messages to be overwritten if u trigger chat creation here - shld use if/else to check for empty messages which then redirects to chat url if non-empty
     }
     this.context.addChat(newChatKey, chat)
   }

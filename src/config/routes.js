@@ -32,9 +32,7 @@ const routes = (
           <Route path="/cats/add" component={AddCatForm}/>
           <Route path="/cats/:id/edit" component={EditCatForm}/>
         </Route>
-        <Route path="/chats" component={ChatroomContainer} >
-          <Route path="/chats/:chatId" component={ChatRoom}/>
-        </Route>
+        <Route path="/chats" component={ChatroomContainer} />
         <Route path="/profile" component={UserProfile}>
           <Route path="/profile/likelist" component={CatDisplay}/>
           <Route path="/profile/cats" component={CatDisplay}>

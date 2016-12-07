@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from './Form';
-import './index.css';
+import AddMsgForm from './AddMsgForm';
+import '../css/MessagePane.css';
 
 
 const Message = ({author, text}) => (
@@ -14,26 +14,21 @@ const Message = ({author, text}) => (
 
 const List = ({messages}) => (
   <div className="MessagePane-List">
+    //need to use Object.keys to turn into message
     {messages.map(({id, author, text}) => <Message key={id} author={author} text={text} />) }
   </div>
 );
 
 const MessagePane = ({messages, onSendMessage}) => (
   <div className="MessagePane">
-  <List messages={messages} />
-  <Form onSend={onSendMessage} />
+    <List messages={messages} />
+    <AddMsgForm name={this.props.currUserName} channel={this.props.channel} onSend={onSendMessage} />
   </div>
 );
 // app passes the function to MessagePane, then MessagePane passes the function to Form, then when you click on the button just follows blindly.
 
-
 MessagePane.defaultProps = {
-  messages: []
+  messages: {}
 };
-
-MessagePane.propTypes = {
-  messages: React.PropTypes.array.isRequired
-};
-
 
 export default MessagePane;

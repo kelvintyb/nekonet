@@ -21,6 +21,8 @@ class App extends Component {
     this.state = {
       //this is for detection of logged in user
       uid: null,
+      userName: null,
+      imageUrl: null,
       //cats - note that age is going to be in terms of months
       cats: {},
       //for chat tracking
@@ -85,6 +87,8 @@ class App extends Component {
 
       this.setState({
         uid: authData.user.uid
+        name: authData.user.displayName,
+        imageUrl: authData.user.photoURL
       })
     })
   }
@@ -113,12 +117,17 @@ class App extends Component {
     //update chatrooms in firebase"
     let updates = {};
     updates[`/chatrooms/${chatKey}`] = chat;
+    updates[`/users/${this.state.uid}/chatList/${chatKey}`] = true;
     base.database().ref().update(updates);
+    setState({currChatroom: chatKey});
+    //transition to chatroom route
+    this.context.router.push("/chats")
   }
 
 // NOTE: should refactor into Redux pattern
   getChildContext(){
     return {
+      currChatroom: this.state.currChatroom,
       addChat: this.addChat,
       addCat: this.addCat,
       updateCat: this.updateCat,
@@ -144,7 +153,12 @@ class App extends Component {
   }
 }
 
+App.contextTypes = {
+  router: React.PropTypes.object
+}
+
 App.childContextTypes = {
+  currChatroom: React.PropTypes.string,
   addChat: React.PropTypes.func,
   addCat: React.PropTypes.func,
   updateCat: React.PropTypes.func,

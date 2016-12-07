@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class AddMsgForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      name: '',
-      message: ''
+      name: this.props.name,
+      message: '',
+      chatroom_id: this.props.channel      
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,10 +23,6 @@ class Form extends Component {
     this.setState({ name:"", message: "" })
   }
 
-  updateName(event) {
-    this.setState({name: event.target.value.trim() });
-  }
-
   updateMessage(event) {
     this.setState({message: event.target.value });
   }
@@ -35,15 +32,6 @@ class Form extends Component {
     return (
       <div className="MessagePane-Form">
         <div className="MessagePane-Form-container">
-          <p>
-            <input
-              className="name"
-              type="text"
-              placeholder="some_login_here"
-              value={this.state.name}
-              onChange={this.updateName}
-            />
-          </p>
           <p>
             <textarea
               className="message"
@@ -61,12 +49,4 @@ class Form extends Component {
   }
 }
 
-Form.propTypes = {
-  onSend: React.PropTypes.func.isRequired
-}
-
-Form.defaultProps = {
-  onSend: () => {}
-}
-
-export default Form;
+export default AddMsgForm;
