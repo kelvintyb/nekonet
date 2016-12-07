@@ -3,7 +3,7 @@
 
 .hero-header-home {
    width: 100%;
-   height: 50vh;
+   height: 65vh;
    background-size: cover;
    background-position: center;
    margin-top: 300px;
@@ -31,7 +31,6 @@ header {
     color: #fff;
     width: 100%;
     background-color: #c9c9c9;
-    background-image: url('https://splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-Slate-Stone-Xeromatic-1440x953.jpg');
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
