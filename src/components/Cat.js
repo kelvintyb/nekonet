@@ -4,7 +4,6 @@ import base from "../base"
 import {findById} from "../utils/helpers"
 // import "../css/Cat.css"
 
-//will nd to use http://bootsnipp.com/snippets/v7VyB for image gallery
 
 class Cat extends React.Component {
   //will nd to add conditional render of if(this.state.uid == cat.uid) {render edit btn} else if (this.state.uid){render like/adopt btns}, also currOwner shld not be able to chat with own cats
@@ -45,11 +44,15 @@ class Cat extends React.Component {
   }
   render() {
     const {details} = this.props;
-
+    const imageStyle = {
+      background: `url(${details.imageUrl}) no-repeat`,
+      backgroundSize: `100%`,
+      borderRadius: `10px`
+    }
+    const icons; //conditional logic for which icons to display
     return(
-
-      <div className="gallery-item">
-        <img src={details.imageUrl} alt={details.name} />
+//use snip 1550 for icon hovers (insert {icons} into jsx) and also put perma-captions that flex to the bottom of the div for details & love icon. http://bootsnipp.com/snippets/v7VyB for modals
+      <div className="gallery-item" style={imageStyle}>
         <span className="text-wrapper">
           <span className="name">{details.name}</span>
           <span className="age">{details.age} months old</span>

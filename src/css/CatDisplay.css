@@ -2,23 +2,22 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  margin: 0px 40px;
 }
 
 .gallery-item {
   width: 240px;
   height: 240px;
-  margin: 10px;
+  margin: 45px;
   text-decoration: none;
 }
 
-.gallery-item img {
+/*.gallery-item img {
   position: absolute;
-}
+}*/
 
 .text-wrapper {
   position: relative;
-  /*margin left below is a quick fix, will nd to change again for proper overlay of text*/
-  margin-left: 120px;
   width: 240px;
   height: 240px;
   display: flex;
