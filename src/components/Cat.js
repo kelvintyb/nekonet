@@ -42,6 +42,10 @@ class Cat extends React.Component {
     }
     this.context.addChat(newChatKey, chat)
   }
+
+  //const icons : conditional logic for which icons to display
+  //use snip 1550 for icon hovers (insert {icons} into jsx) and also put perma-captions that flex to the bottom of the div for details & love icon. http://bootsnipp.com/snippets/v7VyB for modals
+
   render() {
     const {details} = this.props;
     const imageStyle = {
@@ -49,9 +53,7 @@ class Cat extends React.Component {
       backgroundSize: `100%`,
       borderRadius: `10px`
     }
-    const icons; //conditional logic for which icons to display
     return(
-//use snip 1550 for icon hovers (insert {icons} into jsx) and also put perma-captions that flex to the bottom of the div for details & love icon. http://bootsnipp.com/snippets/v7VyB for modals
       <div className="gallery-item" style={imageStyle}>
         <span className="text-wrapper">
           <span className="name">{details.name}</span>
