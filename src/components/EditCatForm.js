@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from "react-bootstrap"
 
 class EditCatForm extends React.Component {
   editCat(e){
@@ -32,7 +33,7 @@ class EditCatForm extends React.Component {
               <option value="false">Has been adopted</option>
           </select>
           <input ref={(input) => this.image = input} type="text" placeholder="Cat Image" />
-          <button type="submit">+ Update Cat Details</button>
+          <Button bsStyle="warning" type="submit">+ Update Cat Details</Button>
         </form>
     )
   }

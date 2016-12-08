@@ -25,19 +25,13 @@ const routes = (
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
         <Route path="/about" component={About}/>
-        <Route path="/cats" component={IndexContainer}>
-          <Route path="/cats/add" component={AddCatForm}/>
-          <Route path="/cats/:id/edit" component={EditCatForm}/>
-        </Route>
+        <Route path="/cats" component={IndexContainer}/>
         <Route path="/chats" component={ChatroomContainer}>
           <Route path="/chats/:id" component={MessagePane}/>
         </Route>
         <Route path="/profile" component={ProfileContainer}>
           <Route path="/profile/likelist" component={CatDisplay}/>
-          <Route path="/profile/cats" component={CatDisplay}>
-            <Route path="/profile/cats/add" component={AddCatForm}/>
-            <Route path="/profile/cats/:id/edit" component={EditCatForm}/>
-          </Route>
+          <Route path="/profile/cats" component={CatDisplay}/>
         </Route>
         <Route path="/login" component={LogInPage} />
         <Route path="/wronguser" component={WrongUser} />
