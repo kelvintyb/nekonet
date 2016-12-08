@@ -100,10 +100,16 @@ class Cat extends React.Component {
         icons = (<i className="icon ion-edit wow fadeIn" data-wow-delay=".3s" onClick={this.open}></i>)
       } else if (localStorage.getItem("localUser") && details.isForAdoption === "true") {
         icons = (
-                  <div>
-                    <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i><i className={likeIcon} data-wow-delay=".3s" onClick={(e) => this.toggleLike(e)}>{details.likes}</i>
-                  </div>
+                <div className="icon-bottom">
+                  <div className="icon-bottom-left">
+                    <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i>
+                    </div>
+                    <div className="icon-bottom-right">
+                    <i className={likeIcon} data-wow-delay=".3s" onClick={(e) =>  this.toggleLike(e)}>{details.likes}</i>
+                    </div>
+                </div>
                 )
+
       } else if (localStorage.getItem("localUser")){
         icons = (<i className={likeIcon} data-wow-delay=".3s" onClick={(e) => this.toggleLike(e)}>{details.likes}</i>)
       }
