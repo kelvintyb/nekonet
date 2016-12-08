@@ -41,7 +41,7 @@ class MessagePane extends React.Component {
   }
   render(){
 
-    const messages = (findById(this.props.params.id, this.context.chatrooms).messages) || "isUndefined"
+    const messages = !!this.context.chatrooms ? ((findById(this.props.params.id, this.context.chatrooms).messages) || "isUndefined") : "isUndefined"
     const name = this.context.userName
     return(
       <div className="MessagePane">
