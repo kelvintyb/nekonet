@@ -19,7 +19,7 @@ import base from "../base.js"
     if (age === "any") {
       return collection
     }
-    return _.filter(collection, (obj) => obj.age === age)
+    return _.filter(collection, (obj) => parseInt(obj.age) <= parseInt(obj.age))
   }
 
   let filterByColor = function(color,collection) {
