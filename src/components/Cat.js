@@ -78,13 +78,20 @@ class Cat extends React.Component {
   renderLikeIcon(){
     //if (likelist) {if catID is in this.context.users.likeList then show filled up icon, else show outline}
     let className = `icon ion-android-favorite-outline wow fadeIn`;
-    const catKey = this.props.index
-    const user = this.context.users[localStorage.getItem("localUser")]
-    if (user.likeList) {
+    let catKey = this.props.index
+    let user = this.context.users[localStorage.getItem("localUser")]
+    console.log(catKey)
+    console.log(user.likeList)
+    console.log("if coming")
+    if (user && user.likeList) {
+      console.log(this.props.index)
+      console.log(Object.keys(user.likeList))
+      console.log(Object.keys(user.likeList).filter((key) => key === catKey))
       if (Object.keys(user.likeList).filter((key) => key === catKey).length > 0 ){
         className = `icon ion-android-favorite wow fadeIn`
       }
     }
+    console.log(className)
     return className;
   }
   render() {
@@ -130,9 +137,9 @@ class Cat extends React.Component {
             <Modal.Title>Edit Your Neko</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
+            <EditCatForm cat={details} index={this.props.index} updateCat={this.props.updateCat} onClose={this.close}/>
             <OverlayTrigger overlay={tooltip}>
-              <Button bsStyle="danger" onClick={(e) => this.removeCat(e)}>Delete</Button>
+              <Button bsStyle="danger" onClick={(e) => this.removeCat(e)} className="delete-edit">Delete</Button>
             </OverlayTrigger>
           </Modal.Body>
           <Modal.Footer>

@@ -117,6 +117,7 @@ class App extends Component {
     let updates = {};
     updates[`/users/${this.state.uid}/fosterList/${newCatKey}`] = true
     base.database().ref().update(updates);
+    cat.id = newCatKey
     //set state - this will automatically update the firebase due to 2-way binding
     cats[newCatKey] = cat
     this.setState({cats})

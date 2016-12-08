@@ -14,7 +14,7 @@ class SearchCatForm extends React.Component {
   render() {
     return (
       <Form inline onSubmit={(e)=>this.searchCat(e)}>
-        <FormGroup controlId="formControlsSelect">
+        <FormGroup controlId="formControlsSelect1">
           <ControlLabel>Adoption Status:</ControlLabel>
           {"  "}
           <FormControl componentClass="select" inputRef={(input) => this.isForAdoption = input}>
@@ -23,7 +23,7 @@ class SearchCatForm extends React.Component {
           </FormControl>
         </FormGroup>
         {"    "}
-        <FormGroup controlId="formControlsSelect">
+        <FormGroup controlId="formControlsSelect2">
           <ControlLabel>Cat Age:</ControlLabel>
             {"  "}
           <FormControl componentClass="select" inputRef={(input) => this.age = input}>
@@ -38,7 +38,7 @@ class SearchCatForm extends React.Component {
           </FormControl>
         </FormGroup>
         {"    "}
-        <FormGroup controlId="formControlsSelect">
+        <FormGroup controlId="formControlsSelect3">
           <ControlLabel>Primary Colour:</ControlLabel>
             {"  "}
           <FormControl componentClass="select" inputRef={(input) => this.color = input}>

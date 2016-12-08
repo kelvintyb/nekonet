@@ -33,19 +33,20 @@ class IndexContainer extends React.Component {
 
   //add const cats that filters context.cats to give filtered data to cat display component
   render() {
+    const addCatIcon = (<i className="icon ion-android-add-circle wow fadeIn" data-wow-delay=".3s" onClick={this.open}> Add Cat</i>)
     const {status, age, color} = this.state.searchParams;
     const cats = filterByStatus(status,filterByAge(age, filterByColor(color, this.context.cats)))
     return (
       <div className="main-container">
         <SearchForm updateSearch={this.updateSearch}/>
-        <i className="icon ion-android-add-circle wow fadeIn" data-wow-delay=".3s" onClick={this.open}> Add Cat</i>
+        {localStorage.getItem("localUser") && addCatIcon}
         <CatDisplay cats={cats} updateCat={this.context.updateCat} />
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>Create a Neko</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AddCatForm />
+            <AddCatForm onClose={this.close}/>
           </Modal.Body>
           <Modal.Footer>
             <Button bsStyle="info" onClick={this.close}>Close</Button>

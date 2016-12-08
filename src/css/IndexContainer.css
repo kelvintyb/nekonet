@@ -6,3 +6,7 @@
 .main-container{
   margin-top: 100px;
 }
+
+.form-inline .form-control {
+  margin: 0px;
+}
