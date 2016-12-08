@@ -11,6 +11,11 @@ import './css/App.css';
 class App extends Component {
   constructor(){
     super();
+    this.incrementLikes = this.incrementLikes.bind(this)
+    this.appendLikeList = this.appendLikeList.bind(this)
+    this.decrementLikes = this.decrementLikes.bind(this)
+    this.removeLikeList = this.removeLikeList.bind(this)
+
     this.addChat = this.addChat.bind(this);
     this.addCat = this.addCat.bind(this);
     this.updateCat = this.updateCat.bind(this);
@@ -139,14 +144,38 @@ class App extends Component {
       //transition to chatroom route
     this.context.router.push("/chats")
   }
-
   updateCurrChat (chatKey) {
     this.setState({currChatroom: chatKey})
   }
+  incrementLikes(catKey){
+    const cats = {...this.state.cats};
+    cats[catKey].likes += 1;
+    this.setState({cats});
+  }
+  appendLikeList(catKey, userKey){
+    let updates = {};
+    updates[`/users/${userKey}/likeList/${catKey}`] = true;
+    base.database().ref().update(updates);
+  }
+  decrementLikes(catKey){
+    const cats = {...this.state.cats};
+    cats[catKey].likes -= 1;
+    this.setState({cats});
+  }
+  removeLikeList(catKey, userKey){
+    let updates = {};
+    updates[`/users/${userKey}/likeList/${catKey}`] = null;
+    base.database().ref().update(updates);
+  }
+
 
 // NOTE: should refactor into Redux pattern
   getChildContext(){
     return {
+      incrementLikes: this.incrementLikes,
+      appendLikeList: this.appendLikeList,
+      decrementLikes: this.decrementLikes,
+      removeLikeList: this.removeLikeList,
       currChatroom: this.state.currChatroom,
       addChat: this.addChat,
       addCat: this.addCat,
@@ -180,6 +209,10 @@ App.contextTypes = {
 }
 
 App.childContextTypes = {
+  incrementLikes: React.PropTypes.func,
+  appendLikeList: React.PropTypes.func,
+  decrementLikes: React.PropTypes.func,
+  removeLikeList: React.PropTypes.func,
   users: React.PropTypes.object,
   currChatroom: React.PropTypes.string,
   addChat: React.PropTypes.func,

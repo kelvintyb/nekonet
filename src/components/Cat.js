@@ -9,10 +9,10 @@ class Cat extends React.Component {
     super();
     this.state = {
       showModal: false
-    }
-    this.open = this.open.bind(this)
-    this.close = this.close.bind(this)
-
+    };
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+    this.renderLikeIcon = this.renderLikeIcon.bind(this);
   }
   close() {
     this.setState({ showModal: false });
@@ -38,25 +38,25 @@ class Cat extends React.Component {
       database.update(removeData);
     })
   }
-  // function toggleLike(postRef, uid) {
-      //change className of event.target to filled up heart, and update cat likes
-      //use this.props.index for catKey, write func in App.js to updateLikes for the specific cat
-  //   postRef.transaction(function(post) {
-  //     if (post) {
-  //       if (post.stars && post.stars[uid]) {
-  //         post.starCount--;
-  //         post.stars[uid] = null;
-  //       } else {
-  //         post.starCount++;
-  //         if (!post.stars) {
-  //           post.stars = {};
-  //         }
-  //         post.stars[uid] = true;
-  //       }
-  //     }
-  //     return post;
-  //   });
-  // }
+
+  toggleLike(e) {
+      const catKey = this.props.index;
+      const userKey = localStorage.getItem("localUser")
+      if (e.target.className === `icon ion-android-favorite-outline wow fadeIn`) {
+        e.target.className = `icon ion-android-favorite wow fadeIn`
+        //likes ++
+        this.context.incrementLikes(catKey);
+        //add cat to like list
+        this.context.appendLikeList(catKey, userKey);
+
+      } else {
+        e.target.className = `icon ion-android-favorite-outline wow fadeIn`
+        //likes --
+        this.context.decrementLikes(catKey);
+        //set cat to null in like list
+        this.context.removeLikeList(catKey, userKey)
+      }
+  }
   createChatroom(e){
     const {details} = this.props;
     const catKey = this.props.index;
@@ -75,9 +75,18 @@ class Cat extends React.Component {
     }
     this.context.addChat(newChatKey, chat)
   }
-  // <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
-  // <i className="icon-lg ion-android-favorite wow fadeIn" data-wow-delay=".3s"></i>
-
+  renderLikeIcon(){
+    //if (likelist) {if catID is in this.context.users.likeList then show filled up icon, else show outline}
+    let className = `icon ion-android-favorite-outline wow fadeIn`;
+    const catKey = this.props.index
+    const user = this.context.users[localStorage.getItem("localUser")]
+    if (user.likeList) {
+      if (Object.keys(user.likeList).filter((key) => key === catKey).length > 0 ){
+        className = `icon ion-android-favorite wow fadeIn`
+      }
+    }
+    return className;
+  }
   render() {
     const {details} = this.props;
     const imageStyle = {
@@ -85,21 +94,22 @@ class Cat extends React.Component {
       backgroundSize: `100%`,
       borderRadius: `10px`
     }
+    let likeIcon = this.renderLikeIcon();
     let icons = (<span>Join up to like or adopt cats!</span>);
-
     if (details.uid === localStorage.getItem("localUser")) {
-      icons = (<i className="icon ion-edit wow fadeIn" data-wow-delay=".3s" onClick={this.open}></i>)
-    } else if (localStorage.getItem("localUser") && details.isForAdoption === "true") {
-      icons = (
-                <div>
-                  <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i><i className="icon ion-android-favorite-outline wow fadeIn" data-wow-delay=".3s">{details.likes}</i>
-                </div>
-              )
-    } else if (localStorage.getItem("localUser")){
-      icons = (<i className="icon ion-android-favorite-outline wow fadeIn" data-wow-delay=".3s">{details.likes}</i>)
-    }
-    const tooltip = <Tooltip>Meow! Don't delete me?</Tooltip>
+        icons = (<i className="icon ion-edit wow fadeIn" data-wow-delay=".3s" onClick={this.open}></i>)
+      } else if (localStorage.getItem("localUser") && details.isForAdoption === "true") {
+        icons = (
+                  <div>
+                    <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i><i className={likeIcon} data-wow-delay=".3s" onClick={(e) => this.toggleLike(e)}>{details.likes}</i>
+                  </div>
+                )
+      } else if (localStorage.getItem("localUser")){
+        icons = (<i className={likeIcon} data-wow-delay=".3s" onClick={(e) => this.toggleLike(e)}>{details.likes}</i>)
+      }
+    const tooltip = <Tooltip id={`delete-tip-${details.index}`}>Meow! Don't delete me?</Tooltip>
     console.log(details)
+
     return(
       <div>
         <div className="gallery-item" style={imageStyle}>
@@ -128,6 +138,10 @@ class Cat extends React.Component {
   }
 }
 Cat.contextTypes = {
+  incrementLikes: React.PropTypes.func,
+  appendLikeList: React.PropTypes.func,
+  decrementLikes: React.PropTypes.func,
+  removeLikeList: React.PropTypes.func,
   addChat: React.PropTypes.func,
   uid: React.PropTypes.string,
   users: React.PropTypes.object,
