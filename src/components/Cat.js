@@ -45,6 +45,8 @@ class Cat extends React.Component {
 
   //const icons : conditional logic for which icons to display
   //use snip 1550 for icon hovers (insert {icons} into jsx) and also put perma-captions that flex to the bottom of the div for details & love icon. http://bootsnipp.com/snippets/v7VyB for modals
+  // <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
+  // <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
 
   render() {
     const {details} = this.props;
@@ -58,8 +60,6 @@ class Cat extends React.Component {
         <span className="text-wrapper">
           <span className="name">{details.name}</span>
           <span className="age">{details.age} months old</span>
-          <button onClick={(e) => this.removeCat(e)}>Delete Cat</button>
-          <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
           <button onClick={(e) => this.createChatroom(e)}>Chat</button>
 
         </span>
