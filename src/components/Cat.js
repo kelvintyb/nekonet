@@ -88,7 +88,7 @@ class Cat extends React.Component {
     } else if (localStorage.getItem("localUser")) {
       icons = (
                 <div>
-                  <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i><i className="icon-lg ion-android-favorite-outline wow fadeIn" data-wow-delay=".3s"></i>
+                  <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i><i className="icon ion-android-favorite-outline wow fadeIn" data-wow-delay=".3s"></i>
                 </div>
               )
     }
