@@ -1,7 +1,8 @@
 .wrapper {
-  position: relative;
-  top: 0;
-  height: 100vh;
+    position: relative;
+    top: 0;
+    height: 100vh;
+    display: block;
 }
 
 .sidebar .nav > li.active-pro{
@@ -305,7 +306,7 @@ body > .navbar-collapse .logo {
 }
 
 .main-panel {
-    width: 100%;
+    width: 81%;
 }
 
 body > .navbar-collapse::before {

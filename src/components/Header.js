@@ -16,15 +16,9 @@ class Header extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavDropdown className="navlinks" eventKey={1} title="Cats" id="basic-nav-dropdown">
-                <LinkContainer to={{pathname: "/cats"}}>
-                  <MenuItem className="navlinks" eventKey={1.1}>All Cats</MenuItem>
-                </LinkContainer>
-                <LinkContainer to={{pathname: "/cats/add"}}>
-                  <MenuItem className="navlinks" eventKey={1.2}>Add Cats</MenuItem>
-                </LinkContainer>
-                <MenuItem divider />
-              </NavDropdown>
+              <LinkContainer to={{pathname: "/cats"}}>
+                <NavItem className="navlinks" eventKey={1} href="/cats">All Cats</NavItem>
+              </LinkContainer>
               <LinkContainer to={{pathname: "/about"}}>
                 <NavItem className="navlinks" eventKey={2} href="/about">About Us</NavItem>
               </LinkContainer>

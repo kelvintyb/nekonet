@@ -1,0 +1,54 @@
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 40px;
+}
+
+.gallery-item {
+    width: 240px;
+    height: 240px;
+    margin: 45px;
+    text-decoration: none;
+    float: left;
+}
+
+/*.gallery-item img {
+  position: absolute;
+}*/
+
+.text-wrapper {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+}
+
+.text-wrapper:hover {
+  transition: all 0.8s ease;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+}
+
+.name {
+  font-size: 1.5em;
+}
+
+
+/* Because there is no hover on a touch device, we need to move the text to the bottom of the image and dissplay it by default */
+
+@media only screen and (max-width: 1024px) {
+  .text-wrapper {
+    opacity: 1;
+    justify-content: flex-end;
+    text-shadow: 1px 1px 1px #000;
+  }
+  .age {
+    margin-bottom: 1em;
+  }
+}

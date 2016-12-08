@@ -3,7 +3,7 @@
 
 .hero-header-home {
    width: 100%;
-   height: 65vh;
+   height: 45vh;
    background-size: cover;
    background-position: center;
    margin-top: 300px;
@@ -106,7 +106,7 @@ a:focus {
     background-image: none;
 }
 
-.btn btn-primary btn-xl page-scroll {
+.btn btn-primary .btn-xl page-scroll {
   background-color: transparent;
 }
 

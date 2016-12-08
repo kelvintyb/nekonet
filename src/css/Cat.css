@@ -10,3 +10,31 @@ i:hover {
 .modal-content {
   background: white;
 }
+
+.icon-bottom {
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: grey;
+  width: 100%
+}
+
+.icon-bottom-left {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 60%;
+  display: inline-block;
+}
+
+.icon-bottom-right {
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 20%;
+  display: inline-block
+}

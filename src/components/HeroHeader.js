@@ -12,7 +12,7 @@ class HeroHeader extends React.Component {
                   <h1 className="cursive">Adopt a cat or kitten today!</h1>
                   <h4>Cuddly furry companions are ready to love and be loved.</h4>
                   <hr></hr>
-                 <a href="#one" className="btn btn-primary btn-xl page-scroll">Get Started</a>
+                 <a href="#two" className="btn btn-primary btn-xl page-scroll">Get Started</a>
               </div>
           </div>
           <video autoPlay="true" loop="true" className="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="../media/cat-background" id="video-background" src="../media/nekobg.mp4" type="video/mp4">

@@ -23,17 +23,14 @@ class UserLogIn extends React.Component {
         </div>
         <div className="account">
         <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
-          <LinkContainer to={{pathname: "/profile"}}>
+          <LinkContainer to={{pathname: "/profile/cats"}}>
             <MenuItem className="navlinks" eventKey={3.1}>My Profile</MenuItem>
           </LinkContainer>
-          <LinkContainer to={{pathname: "/profile/cats"}}>
-            <MenuItem className="navlinks" eventKey={3.2}>My Cats</MenuItem>
-          </LinkContainer>
           <LinkContainer to={{pathname: "/chats"}}>
-            <MenuItem className="navlinks" eventKey={3.3}>My Chats</MenuItem>
+            <MenuItem className="navlinks" eventKey={3.2}>My Chats</MenuItem>
           </LinkContainer>
           <MenuItem divider />
-          <MenuItem className="navlinks" eventKey={3.4} onSelect={this.props.logout}>Logout</MenuItem>
+          <MenuItem className="navlinks" eventKey={3.3} onSelect={this.props.logout}>Logout</MenuItem>
         </NavDropdown>
         </div>
       </div>

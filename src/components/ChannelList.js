@@ -1,5 +1,7 @@
 //side panel showing list of chatrooms (Cat Name | Foster Name)
 import React from 'react';
+import '../css/ChannelList.css';
+
 
 const Channel = ({name, isSelected, onClick}) => {
   const className = isSelected ? "ChannelList-item ChannelList-item-selected" : "ChannelList-item";
@@ -10,6 +12,7 @@ const Channel = ({name, isSelected, onClick}) => {
 };
 
 const ChannelList =  ({channels, selectedChannelId, onSelect}) => (
+  <div className="channel-wrapper">
   <div className="ChannelList">
     {
       channels.map(({id, name}) => {
@@ -18,6 +21,7 @@ const ChannelList =  ({channels, selectedChannelId, onSelect}) => (
         return <Channel key={id} name={name} isSelected={is_selected} onClick={onChannelSelect} />
       })
   }
+  </div>
   </div>
 );
 

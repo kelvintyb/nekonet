@@ -1,0 +1,15 @@
+.about {
+  margin-top: 100px;
+}
+
+.rowIndex {
+  display: inline-block;
+}
+
+.text {
+  margin-left: 20px;
+}
+
+.img-center {
+	margin: 0 auto;
+}
