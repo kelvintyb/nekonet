@@ -16,9 +16,11 @@ class IndexContainer extends React.Component {
     }
     this.updateSearch = this.updateSearch.bind(this);
   }
+
   updateSearch(searchParams){
     this.setState({searchParams})
   }
+
   //add const cats that filters context.cats to give filtered data to cat display component
   render() {
     const {status, age, color} = this.state.searchParams;

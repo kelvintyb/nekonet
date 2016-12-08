@@ -12,13 +12,10 @@ import LogInPage from "../components/LogInPage"
 import IndexContainer from "../containers/IndexContainer";
 import ChatroomContainer from "../containers/ChatroomContainer";
 import ProfileContainer from "../containers/ProfileContainer";
-import ChatRoom from "../components/ChatRoom"
-import UserProfile from "../components/UserProfile"
 
 import AddCatForm from "../components/AddCatForm"
 import EditCatForm from "../components/EditCatForm"
 import CatDisplay from "../components/CatDisplay"
-
 import Placeholder from "../components/Placeholder"
 
 
@@ -35,7 +32,7 @@ const routes = (
         <Route path="/chats" component={ChatroomContainer}>
           <Route path="/chats/:id" component={MessagePane}/>
         </Route>
-        <Route path="/profile" component={UserProfile}>
+        <Route path="/profile" component={ProfileContainer}>
           <Route path="/profile/likelist" component={CatDisplay}/>
           <Route path="/profile/cats" component={CatDisplay}>
             <Route path="/profile/cats/add" component={AddCatForm}/>

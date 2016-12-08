@@ -68,7 +68,8 @@ class App extends Component {
   logout(){
     base.unauth();
     localStorage.removeItem("localUser")
-    this.setState({uid: null});
+    this.setState({uid: null})
+    this.context.router.push("/")
   }
   authHandler(err, authData){
     if (err){
@@ -99,6 +100,7 @@ class App extends Component {
         name: authData.user.displayName,
         imageUrl: authData.user.photoURL
       })
+      this.context.router.push("/")
     })
   }
   addCat(cat){
@@ -126,8 +128,8 @@ class App extends Component {
     //update chatrooms in firebase"
     let updates = {};
     updates[`/chatrooms/${chatKey}`] = chat;
-    updates[`/users/${chat.users[0]}/chatList/${chatKey}`] = true;
-    updates[`/users/${chat.users[1]}/chatList/${chatKey}`] = true;
+    updates[`/users/${Object.keys(chat.users)[0]}/chatList/${chatKey}`] = true;
+    updates[`/users/${Object.keys(chat.users)[1]}/chatList/${chatKey}`] = true;
     console.log(updates)
     console.log(this.state.cats)
     console.log(this.state.users)

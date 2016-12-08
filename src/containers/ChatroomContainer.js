@@ -1,6 +1,5 @@
 import React from 'react';
 import ChannelList from "../components/ChannelList"
-import MessagePane from "../components/MessagePane"
 import base from "../base.js"
 import {findById, filterCollectionByKeys} from "../utils/helpers"
 import "../css/ChatContainer.css"
@@ -35,6 +34,9 @@ class ChatroomContainer extends React.Component {
   //
   // }
   componentWillMount(){
+    this.authListener = this.authListener.bind(this)
+    this.authListener();
+
     this.ref = base.syncState("/chatrooms", {
       context: this,
       state: "chatrooms"
@@ -42,8 +44,20 @@ class ChatroomContainer extends React.Component {
   }
   componentWillUnmount(){
     base.removeBinding(this.ref)
+    this.firebaseListener && this.firebaseListener();
+    this.authListener = undefined;
   }
 
+  authListener() {
+    this.firebaseListener = base.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log("user is logged in");
+      } else {
+        // No user is signed in.
+        this.context.router.push(`/login`)
+      }
+    });
+  }
   onChannelSelect(id) {
     this.context.updateCurrChat(id);
     this.setState({channel: id})
@@ -65,11 +79,15 @@ class ChatroomContainer extends React.Component {
   }
 
   render() {
-    const localUserRef = this.context.uid;
+    const localUserRef = localStorage.getItem("localUser");
     const currChatroom = this.context.currChatroom;
     //BUG: this.context.users not filled on direct URL refresh - suspect the syncState request not complete from Appcontainer, will nd to either 1) syncstate of users in this container instead or 2) use a firebase .once("value").then to grab right user
-    const user = findById(localUserRef, this.context.users);
-    const userChatKeyArray = Object.keys(user.chatList);
+    let user = findById(localUserRef, this.context.users);
+    console.log(this.context.users)
+    console.log(localUserRef)
+    console.log(currChatroom)
+    console.log(user)
+    const userChatKeyArray = !!user ? Object.keys(user.chatList) : [];
     const userChats = filterCollectionByKeys(userChatKeyArray, this.state.chatrooms);
     return (
       <div className="main-container chat-wrapper">

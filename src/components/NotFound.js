@@ -5,8 +5,8 @@ class NotFound extends React.Component {
 
   render() {
     return (
-      <div>
-        //place 404 cat here
+      <div style={{marginTop: `150px`}}>
+        404 page
       </div>
     );
   }

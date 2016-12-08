@@ -1,6 +1,6 @@
 import React from 'react';
 import {LinkContainer} from "react-router-bootstrap"
-import {Navbar, MenuItem, NavDropdown, Button, ButtonToolbar} from "react-bootstrap"
+import {MenuItem, NavDropdown, Button, ButtonToolbar} from "react-bootstrap"
 import "../css/Header.css";
 
 
@@ -11,17 +11,17 @@ class UserLogIn extends React.Component {
     if(!this.props.uid) {
         return (
           <ButtonToolbar>
-            <Button bsStyle="primary" bsSize="medium" onClick={()=> this.props.authenticate("facebook")} active>Log in with Facebook</Button>
+            <Button bsStyle="primary" bsSize="large" onClick={()=> this.props.authenticate("facebook")} active>Log in with Facebook</Button>
           </ButtonToolbar>
         )
     }
-    
+
     return (
       <div>
         <div className="account">
             Hello, {userName}!
         </div>
-        <div className = "account">
+        <div className="account">
         <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
           <LinkContainer to={{pathname: "/profile"}}>
             <MenuItem className="navlinks" eventKey={3.1}>My Profile</MenuItem>
