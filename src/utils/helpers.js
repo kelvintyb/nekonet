@@ -17,6 +17,7 @@ import base from "../base.js"
 
   let filterByAge = function(age,collection) {
     let lowerBound, upperBound;
+    // console.log(age)
     if (age === "any") {
       return collection
     } else if (age === "6") {
@@ -25,11 +26,16 @@ import base from "../base.js"
     } else if (age === "12"){
       lowerBound = 6;
       upperBound = 12;
+    } else if (age === "72"){
+      lowerBound = parseInt(age) - 12;
+      upperBound = 300
     } else {
       lowerBound = parseInt(age) - 12;
       upperBound = parseInt(age)
     }
-    return _.filter(collection, (obj) => { lowerBound < parseInt(age) && parseInt(age) <= upperBound })
+    return _.filter(collection, (obj) => {
+      // console.log(obj)
+      return lowerBound < parseInt(obj.age) && parseInt(obj.age) <= upperBound })
   }
 
   let filterByColor = function(color,collection) {
