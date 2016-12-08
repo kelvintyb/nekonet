@@ -28,6 +28,8 @@ class IndexContainer extends React.Component {
     return (
       <div className="main-container">
         <SearchForm updateSearch={this.updateSearch}/>
+        <i className="icon ion-android-add-circle wow fadeIn" data-wow-delay=".3s" onClick={()=> alert("hi")}> Add Cat</i>
+
         <CatDisplay cats={cats} updateCat={this.context.updateCat} />
         <div className="container">
           {this.props.children}
