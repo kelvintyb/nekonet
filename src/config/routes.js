@@ -1,6 +1,6 @@
 //this file for refactoring away routes inside index.js, if needed
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from "react-router";
+import { Router, Route, browserHistory, hashHistory, IndexRoute } from "react-router";
 import App from '../App';
 import MessagePane from "../components/MessagePane"
 import About from "../components/About";
@@ -24,7 +24,7 @@ import Placeholder from "../components/Placeholder"
 
 //consider wrapping /cats/add as child component of /cats for UI overflow of form modal
 const routes = (
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
         <Route path="/about" component={About}/>
