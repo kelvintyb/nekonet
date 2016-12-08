@@ -6,11 +6,10 @@ class NotFound extends React.Component {
   render() {
     return (
       <div style={{marginTop: `150px`}}>
-        404 page
+        <img src="https://http.cat/404" />
       </div>
     );
   }
-
 }
 
 export default NotFound;
