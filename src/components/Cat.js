@@ -86,14 +86,17 @@ class Cat extends React.Component {
       borderRadius: `10px`
     }
     let icons = (<span>Join up to like or adopt cats!</span>);
+
     if (details.uid === localStorage.getItem("localUser")) {
       icons = (<i className="icon ion-edit wow fadeIn" data-wow-delay=".3s" onClick={this.open}></i>)
-    } else if (localStorage.getItem("localUser")) {
+    } else if (localStorage.getItem("localUser") && details.isForAdoption === "true") {
       icons = (
                 <div>
                   <i className="icon ion-chatboxes wow fadeIn" data-wow-delay=".3s" onClick={(e) => this.createChatroom(e)}> Chat to Adopt!</i><i className="icon ion-android-favorite-outline wow fadeIn" data-wow-delay=".3s">{details.likes}</i>
                 </div>
               )
+    } else if (localStorage.getItem("localUser")){
+      icons = (<i className="icon ion-android-favorite-outline wow fadeIn" data-wow-delay=".3s">{details.likes}</i>)
     }
     const tooltip = <Tooltip>Meow! Don't delete me?</Tooltip>
     console.log(details)
@@ -129,7 +132,5 @@ Cat.contextTypes = {
   uid: React.PropTypes.string,
   users: React.PropTypes.object,
   router: React.PropTypes.object
-
-
 }
 export default Cat;
