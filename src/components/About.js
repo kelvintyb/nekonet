@@ -18,7 +18,7 @@ class About extends React.Component {
           <div className="col-lg-4 col-sm-6 text-center">
             <img className="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="" />
               <h3>Kelvin Tan
-                <small className="text">Main Designer</small>
+                <small className="text">Main Architect</small>
               </h3>
               <p>Dude who loves cats and loves code!</p>
           </div>
