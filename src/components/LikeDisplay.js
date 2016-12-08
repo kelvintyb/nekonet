@@ -16,8 +16,7 @@ class LikeDisplay extends React.Component {
     return (
       <div className="gallery">
         {
-          Object.keys(userLikeCats)
-          .map(key => <Cat key={key} index={key} details={userLikeCats[key]} updateCat={this.context.updateCat} />)
+          userLikeCats.map(cat => <Cat key={cat.id} index={cat.id} details={cat} updateCat={this.context.updateCat} />)
         }
       </div>
     )
