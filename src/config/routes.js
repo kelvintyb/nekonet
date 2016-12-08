@@ -16,6 +16,9 @@ import ProfileContainer from "../containers/ProfileContainer";
 import AddCatForm from "../components/AddCatForm"
 import EditCatForm from "../components/EditCatForm"
 import CatDisplay from "../components/CatDisplay"
+import LikeDisplay from "../components/LikeDisplay"
+import FosterDisplay from "../components/FosterDisplay"
+
 import Placeholder from "../components/Placeholder"
 
 
@@ -30,8 +33,8 @@ const routes = (
           <Route path="/chats/:id" component={MessagePane}/>
         </Route>
         <Route path="/profile" component={ProfileContainer}>
-          <Route path="/profile/likelist" component={CatDisplay}/>
-          <Route path="/profile/cats" component={CatDisplay}/>
+          <Route path="/profile/likelist" component={LikeDisplay}/>
+          <Route path="/profile/cats" component={FosterDisplay}/>
         </Route>
         <Route path="/login" component={LogInPage} />
         <Route path="/wronguser" component={WrongUser} />
