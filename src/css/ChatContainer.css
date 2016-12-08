@@ -1,3 +1,14 @@
+.main-container .chat-wrapper {
+  height: 450px;
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 100px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 0;
+  border: 0;
+}
+
 .chat-container {
   display: flex;
   flex: 1;
@@ -23,25 +34,4 @@
 }
 .Message-text {
   margin-top: 5px;
-}
-.ChannelList {
-  width: 200px;
-  border: 1px solid black;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-}
-.ChannelList-item {
-  height: 30px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid navy;
-  padding: 0 5px;
-}
-.ChannelList-item-selected {
-  background-color: #00ffd0;
-}
-.ChannelList-item:hover {
-  background-color: #00ffd0;
-  cursor: pointer;
 }
