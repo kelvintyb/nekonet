@@ -132,7 +132,7 @@ class Cat extends React.Component {
           <Modal.Body>
             <EditCatForm index={this.props.index} updateCat={this.props.updateCat} />
             <OverlayTrigger overlay={tooltip}>
-              <Button bsStyle="danger" onClick={(e) => this.removeCat(e)}>Delete</Button>
+              <Button bsStyle="danger" onClick={(e) => this.removeCat(e)} className="delete-edit">Delete</Button>
             </OverlayTrigger>
           </Modal.Body>
           <Modal.Footer>

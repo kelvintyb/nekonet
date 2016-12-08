@@ -38,3 +38,9 @@ i:hover {
   width: 20%;
   display: inline-block
 }
+
+.delete-edit {
+  margin-top: 40px;
+  margin-right: 270px;
+  margin-left: 5px;
+}

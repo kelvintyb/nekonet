@@ -16,14 +16,14 @@ class About extends React.Component {
             <h2 className="page-header">Our Team</h2>
           </div>
           <div className="col-lg-4 col-sm-6 text-center">
-            <img className="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="" />
+            <img className="img-circle img-responsive img-center" src="../media/Kelvin.jpg" alt="" />
               <h3>Kelvin Tan
                 <small className="text">Main Architect</small>
               </h3>
               <p>Dude who loves cats and loves code!</p>
           </div>
           <div className="col-lg-4 col-sm-6 text-center">
-            <img className="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="" />
+            <img className="img-circle img-responsive img-center" src="../media/Henson.jpg" alt="" />
               <h3>Henson Tay
                 <small className="text">Architect</small>
               </h3>

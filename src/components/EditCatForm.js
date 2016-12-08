@@ -19,7 +19,7 @@ class EditCatForm extends React.Component {
 
   render(){
     return (
-        <form ref={(input) => this.catForm = input} className="control-label col-xs-5" onSubmit={(e) => this.editCat(e)}>
+        <form ref={(input) => this.catForm = input} className="control-label col-m-5" onSubmit={(e) => this.editCat(e)}>
           <input ref={(input) => this.name = input} type="text" className="form-control" placeholder="Cat Name" />
           <input ref={(input) => this.age = input} type="text" className="form-control" placeholder="Cat Age (Months)" />
           <select ref={(input) => this.color = input} className="form-control">
@@ -35,7 +35,7 @@ class EditCatForm extends React.Component {
               <option value="false">Has been adopted</option>
           </select>
           <input ref={(input) => this.image = input} type="text" className="form-control" placeholder="Cat Image" />
-          <Button bsStyle="warning" className="form-control" type="submit">+ Update Cat Details</Button>
+          <Button bsStyle="warning" type="submit" className="form-control">+ Update Cat Details</Button>
         </form>
     )
   }
