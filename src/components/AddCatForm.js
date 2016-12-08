@@ -16,11 +16,12 @@ class AddCatForm extends React.Component {
     }
     this.context.addCat(cat)
     this.catForm.reset();
+    this.props.onClose()
   }
 
   render(){
     return (
-        <form ref={(input) => this.catForm = input} className="cat-edit" onSubmit={(e) => this.createCat(e)}>
+        <form ref={(input) => this.catForm = input} className="cat-create" onSubmit={(e) => this.createCat(e)}>
           <input ref={(input) => this.name = input} type="text" className="form-control" placeholder="Cat Name" />
           <input ref={(input) => this.age = input} type="text" className="form-control" placeholder="Cat Age (Months)" />
           <select ref={(input) => this.color = input} className="form-control">

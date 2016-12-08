@@ -46,7 +46,7 @@ class IndexContainer extends React.Component {
             <Modal.Title>Create a Neko</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AddCatForm />
+            <AddCatForm onClose={this.close}/>
           </Modal.Body>
           <Modal.Footer>
             <Button bsStyle="info" onClick={this.close}>Close</Button>
