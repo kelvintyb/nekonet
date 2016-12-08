@@ -29,10 +29,10 @@ class ProfileContainer extends React.Component {
       <div className="main-container">
         <div className="wrapper">
           <UserProfile />
-        </div>
-        <div className="main-panel">
-          <div className="content">
-            {this.props.children}
+          <div className="main-panel">
+            <div className="content">
+              {this.props.children}
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Cat from "./Cat"
-import "../css/CatDisplay.css"
+import "../css/LikeDisplay.css"
 import {filterCollectionByKeys, findById} from "../utils/helpers"
 
 class LikeDisplay extends React.Component {
