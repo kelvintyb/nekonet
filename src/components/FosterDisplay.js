@@ -8,14 +8,14 @@ class FosterDisplay extends React.Component {
   render() {
     const localUserRef = localStorage.getItem("localUser");
     let user = findById(localUserRef, this.context.users);
+    console.log(user)
     const userFosterKeyArray = !!user ? Object.keys(user.fosterList) : [];
     const userFosterCats = filterCollectionByKeys(userFosterKeyArray, this.context.cats);
 
     return (
       <div className="gallery">
         {
-          Object.keys(userFosterCats)
-          .map(key => <Cat key={key} index={key} details={userFosterCats[key]} updateCat={this.context.updateCat} />)
+          userFosterCats.map(cat => <Cat key={cat.id} index={cat.id} details={cat} updateCat={this.context.updateCat} />)
         }
       </div>
     )
