@@ -197,7 +197,6 @@ class App extends Component {
           logout={this.logout}
         />
         {this.props.children}
-
         <Footer />
       </div>
     );

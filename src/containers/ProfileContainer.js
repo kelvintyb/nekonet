@@ -1,6 +1,8 @@
 import React from 'react';
 import UserProfile from "../components/UserProfile"
 import base from "../base.js"
+import "../css/UserProfile.css"
+
 
 class ProfileContainer extends React.Component {
   componentWillMount(){
@@ -25,7 +27,14 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <UserProfile />
+        <div className="wrapper">
+          <UserProfile />
+        </div>
+        <div className="main-panel">
+          <div className="content">
+            {this.props.children}
+          </div>
+        </div>
       </div>
     );
   }
