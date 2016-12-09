@@ -22,9 +22,9 @@ class EditCatForm extends React.Component {
     return (
         <form ref={(input) => this.catForm = input} className="cat-edit control-label col-m-5" onSubmit={(e) => this.editCat(e)}>
           Cat Name:
-          <input ref={(input) => this.name = input} type="text" className="form-control" placeholder="Cat Name" value={this.props.cat.name} />
+          <input ref={(input) => this.name = input} type="text" className="form-control" placeholder={this.props.cat.name} />
           Age(in months):
-          <input ref={(input) => this.age = input} type="text" className="form-control" placeholder="Cat Age (Months)" value={this.props.cat.age}/>
+          <input ref={(input) => this.age = input} type="text" className="form-control" placeholder={this.props.cat.age}/>
           Primary Colour:
           <select ref={(input) => this.color = input} className="form-control">
             <option value="black">Black</option>
@@ -40,7 +40,7 @@ class EditCatForm extends React.Component {
             <option value="false">Has been adopted</option>
           </select>
           Upload Picture here:
-          <input ref={(input) => this.image = input} type="text" className="form-control" placeholder="Cat Image" value={this.props.cat.imageUrl}/>
+          <input ref={(input) => this.image = input} type="text" className="form-control" placeholder={this.props.cat.imageUrl}/>
           <Button bsStyle="warning" type="submit" className="form-control">+ Update Cat Details</Button>
         </form>
     )
